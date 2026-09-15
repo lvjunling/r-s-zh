@@ -978,6 +978,18 @@ StartMainScript = function()
         TryClickGuiAction("TakeEggGui", {"claim egg", "collect egg", "take egg", "nest egg"}, 1.0)
     end
 
+    -- 单独轮询鸡蛋，避免基地升级等较慢任务拖延拾取。
+    task.spawn(function()
+        while IsRunning do
+            if Flags.AutoTakeEggs then
+                pcall(RunAutoTakeEggs)
+                task.wait(0.25)
+            else
+                task.wait(0.5)
+            end
+        end
+    end)
+
     local function RunEventCheck()
         if Flags.AutoUFO then
             local ufoActive = false
@@ -1279,9 +1291,6 @@ StartMainScript = function()
             pcall(function()
                 if Flags.AutoBypassPopups then
                     DismissPopups()
-                end
-                if Flags.AutoTakeEggs then
-                    RunAutoTakeEggs()
                 end
                 if Flags.AutoUpgradeRecycler or Flags.AutoUpgradeFeeder or Flags.AutoBuyFeeders or Flags.AutoUpgradeCoop or
                     Flags.AutoOpenEggs then
