@@ -839,39 +839,143 @@ StartMainScript = function()
         end
     end
 
+    local EggCollectCooldowns = setmetatable({}, {__mode = "k"})
+    local CachedEggContainers = {}
+    local LastEggContainerScan = 0
+
+    local function GetEggContainers()
+        local now = tick()
+        local cacheValid = now - LastEggContainerScan < 5
+        if cacheValid then
+            for _, container in ipairs(CachedEggContainers) do
+                if not container.Parent then
+                    cacheValid = false
+                    break
+                end
+            end
+        end
+        if cacheValid then
+            return CachedEggContainers
+        end
+
+        local found = {}
+        for _, obj in ipairs(workspace:GetDescendants()) do
+            local n = obj.Name:lower():gsub("[%s_-]", "")
+            if (n == "nesteggs" or n == "incubators" or n == "incubator" or n == "nests") and
+                (obj:IsA("Folder") or obj:IsA("Model")) then
+                table.insert(found, obj)
+            end
+        end
+        CachedEggContainers = found
+        LastEggContainerScan = now
+        return found
+    end
+
+    local function IsOwnNestEgg(nestEgg)
+        local owner = nestEgg:GetAttribute("owner") or nestEgg:GetAttribute("Owner") or
+                          nestEgg:GetAttribute("userId") or nestEgg:GetAttribute("UserId") or
+                          nestEgg:GetAttribute("username") or nestEgg:GetAttribute("Username")
+
+        if owner == nil then
+            for _, valueName in ipairs({"owner", "Owner", "userId", "UserId", "username", "Username"}) do
+                local valueObj = nestEgg:FindFirstChild(valueName, true)
+                if valueObj and valueObj:IsA("ObjectValue") then
+                    owner = valueObj.Value
+                    break
+                elseif valueObj and (valueObj:IsA("StringValue") or valueObj:IsA("IntValue") or
+                    valueObj:IsA("NumberValue")) then
+                    owner = valueObj.Value
+                    break
+                end
+            end
+        end
+
+        if owner == nil then
+            return true
+        end
+        if owner == player then
+            return true
+        end
+        local ownerText = tostring(owner)
+        return ownerText == player.Name or ownerText == player.DisplayName or ownerText == tostring(player.UserId)
+    end
+
+    local function CollectNestEgg(nestEgg, root)
+        if not nestEgg or not nestEgg.Parent or not IsOwnNestEgg(nestEgg) then
+            return false
+        end
+
+        local now = tick()
+        if EggCollectCooldowns[nestEgg] and now - EggCollectCooldowns[nestEgg] < 1.0 then
+            return false
+        end
+        EggCollectCooldowns[nestEgg] = now
+
+        local eggId = nestEgg:GetAttribute("eggId") or nestEgg:GetAttribute("EggId") or
+                          nestEgg:GetAttribute("id") or nestEgg:GetAttribute("Id")
+        if eggId ~= nil then
+            SafeCall("CollectNestEgg", eggId)
+            SafeCall("ClaimNestEgg", eggId)
+            SafeCall("CollectEgg", eggId)
+            SafeCall("TakeEgg", eggId)
+        end
+        SafeCall("CollectNestEgg", nestEgg)
+        SafeCall("ClaimNestEgg", nestEgg)
+
+        local targetPart = nestEgg:IsA("BasePart") and nestEgg or nestEgg:FindFirstChildWhichIsA("BasePart", true)
+        if targetPart then
+            FastTouch(targetPart)
+        end
+
+        for _, obj in ipairs(nestEgg:GetDescendants()) do
+            if obj:IsA("ProximityPrompt") and obj.Enabled then
+                TriggerPrompt(obj)
+            elseif obj:IsA("ClickDetector") and fireclickdetector then
+                pcall(function()
+                    fireclickdetector(obj)
+                end)
+            end
+        end
+        return true
+    end
+
     local function RunAutoTakeEggs()
-        if not CanRunAction("AutoTakeEggsAction", 1.5) then
+        if not CanRunAction("AutoTakeEggsAction", 1.0) then
             return
         end
-        SafeCall("IncubatorClaim")
-        SafeCall("ClaimShopDust")
 
         local root = GetRoot()
         if not root then
             return
         end
 
-        local nestEggs = workspace:FindFirstChild("NestEggs") or workspace:FindFirstChild("Incubators")
-        if nestEggs then
-            for _, obj in ipairs(nestEggs:GetDescendants()) do
+        -- 孵化器领取和巢穴鸡蛋是两套独立机制，两者都执行。
+        SafeCall("IncubatorClaim")
+        SafeCall("ClaimIncubator")
+
+        local containers = GetEggContainers()
+        for _, container in ipairs(containers) do
+            for _, nestEgg in ipairs(container:GetChildren()) do
+                CollectNestEgg(nestEgg, root)
+            end
+
+            -- 某些版本把交互提示直接放在容器的更深层级。
+            for _, obj in ipairs(container:GetDescendants()) do
                 if obj:IsA("ProximityPrompt") and obj.Enabled then
-                    local p = obj.Parent and obj.Parent:IsA("BasePart") and obj.Parent or
-                                  obj:FindFirstAncestorWhichIsA("BasePart")
-                    if p and (root.Position - p.Position).Magnitude <= 24 then
+                    local part = obj.Parent and obj.Parent:IsA("BasePart") and obj.Parent or
+                                     obj:FindFirstAncestorWhichIsA("BasePart")
+                    local text = (obj.ActionText .. " " .. obj.ObjectText .. " " .. obj.Name):lower()
+                    if part and (root.Position - part.Position).Magnitude <= 120 and
+                        (text:find("egg") or text:find("claim") or text:find("collect") or
+                            text:find("take") or text:find("incubator")) then
                         TriggerPrompt(obj)
-                    end
-                elseif obj:IsA("BasePart") and (obj.Name:lower():find("egg") or obj.Parent.Name:lower():find("egg")) then
-                    if (root.Position - obj.Position).Magnitude <= 100 then
-                        FastTouch(obj)
                     end
                 end
             end
         end
 
-        TriggerNearbyPrompt("egg", 80)
-        TriggerNearbyPrompt("incubator", 18)
-        TriggerNearbyPrompt("claim", 18)
-        TryClickGuiAction("TakeEggGui", {"claim", "collect egg", "take egg"}, 1.5)
+        -- 保留界面按钮方式，适配仅通过 GUI 领取的游戏版本。
+        TryClickGuiAction("TakeEggGui", {"claim egg", "collect egg", "take egg", "nest egg"}, 1.0)
     end
 
     local function RunEventCheck()
