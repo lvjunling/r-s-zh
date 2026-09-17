@@ -6,6 +6,8 @@
    ╚═══╝
 ]]
 
+local __VT_OK, __VT_ERROR = xpcall(function()
+
 ----------------------------------------------------------------
 -- EXECUTOR COMPAT LAYER
 ----------------------------------------------------------------
@@ -15,24 +17,16 @@ local DELTA_SAFE_MODE = true
 print("[VT-DELTA] 正在启动兼容模式……")
 
 -- Delta 在游戏刚进入时可能比 LocalPlayer/CoreGui 更早执行自动运行脚本。
-if not game:IsLoaded() then
-    game.Loaded:Wait()
+local loadCheckOK, gameLoaded = pcall(function()
+    return game:IsLoaded()
+end)
+if loadCheckOK and not gameLoaded then
+    pcall(function() game.Loaded:Wait() end)
 end
 
 if ENV.__VanThanhV4 then
-    local existingUI = false
-    pcall(function()
-        local parent
-        if typeof(gethui) == "function" then parent = gethui() end
-        parent = parent or game:GetService("CoreGui")
-        existingUI = parent:FindFirstChild("StealEggHubV4") ~= nil
-            and parent:FindFirstChild("VanThanhBadge") ~= nil
-    end)
-    if existingUI then
-        warn("[VT-V4] 脚本已经加载，本次跳过。")
-        return
-    end
-    -- 上一次若在 UI 创建前报错，会遗留标记；Delta 版自动清除后重新启动。
+    -- Delta 重新执行时直接清理旧标记。旧版经常在创建 UI 前留下该标记，
+    -- 原来的 return 会让后续每次执行都表现为“没有加载”。
     ENV.__VanThanhV4 = nil
     ENV.__VanThanhAC = nil
     ENV.__StealEggV4 = nil
@@ -42,6 +36,7 @@ ENV.__VanThanhAC   = true
 ENV.__StealEggV4   = true
 
 local function safeRef(value)
+    if DELTA_SAFE_MODE then return value end
     if typeof(cloneref) == "function" then
         local ok, result = pcall(cloneref, value)
         if ok and result then return result end
@@ -50,6 +45,8 @@ local function safeRef(value)
 end
 
 local function safeClosure(fn)
+    -- Delta 的 newcclosure 包装包含 task.wait 的回调时会出现不可让出问题。
+    if DELTA_SAFE_MODE then return fn end
     if typeof(newcclosure) == "function" then
         local ok, result = pcall(newcclosure, fn)
         if ok and result then return result end
@@ -2411,3 +2408,18 @@ updateDashboard()
 updateStatus("就绪")
 
 print("[VAN THANH V4] 加载完成：功能与透视模块已启用。")
+
+end, function(err)
+    return tostring(err)
+end)
+
+if not __VT_OK then
+    warn("[VT-DELTA] 启动失败：" .. tostring(__VT_ERROR))
+    pcall(function()
+        game:GetService("StarterGui"):SetCore("SendNotification", {
+            Title = "VT Delta 启动错误",
+            Text = tostring(__VT_ERROR),
+            Duration = 12,
+        })
+    end)
+end
