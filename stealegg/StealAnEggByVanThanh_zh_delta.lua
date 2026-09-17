@@ -3,7 +3,7 @@
  ██║   ██║   VAN THANH EXECUTOR
  ╚██╗ ██╔╝   Steal An Egg V4
   ╚████╔╝    Anti-Cheat · Hook · Bypass · Farm
-   ╚═══╝     
+   ╚═══╝
 ]]
 
 ----------------------------------------------------------------
@@ -120,6 +120,7 @@ local Players          = safeRef(game:GetService("Players"))
 local Workspace        = safeRef(game:GetService("Workspace"))
 local RunService       = safeRef(game:GetService("RunService"))
 local UserInputService = safeRef(game:GetService("UserInputService"))
+local ReplicatedStorage = safeRef(game:GetService("ReplicatedStorage"))
 local VirtualInputManager
 pcall(function()
     VirtualInputManager = safeRef(game:GetService("VirtualInputManager"))
@@ -130,6 +131,31 @@ local ScriptContext    = safeRef(game:GetService("ScriptContext"))
 local CoreGui          = safeRef(game:GetService("CoreGui"))
 local LocalPlayer      = Players.LocalPlayer or Players.PlayerAdded:Wait()
 
+-- 参考游戏实际使用的 Remote 命名，不再只依赖通用 ProximityPrompt。
+local function findRemote(...)
+    for _, name in ipairs({...}) do
+        local remote = ReplicatedStorage:FindFirstChild(name, true)
+        if remote then return remote end
+        local tail = string.match(name, "[^/]+$")
+        if tail then
+            remote = ReplicatedStorage:FindFirstChild(tail, true)
+            if remote then return remote end
+        end
+    end
+    return nil
+end
+
+local EggCarryRemote = findRemote(
+    "RF/EggWorld/AskFieldEggCarry",
+    "AskFieldEggCarry"
+)
+local TreadmillMountRemote = findRemote(
+    "RF/Treadmill/AskDon",
+    "RF/Treadmill/AskMount",
+    "AskDon",
+    "AskMount"
+)
+
 ----------------------------------------------------------------
 -- CONFIG
 ----------------------------------------------------------------
@@ -137,6 +163,7 @@ local LocalPlayer      = Players.LocalPlayer or Players.PlayerAdded:Wait()
 local CONFIG = {
     CHECK_INTERVAL   = 0.35,
     TREADMILL_CFRAME = CFrame.new(0, 10, 0),
+    TREADMILL_SAVED  = false,
     WATERFALL_CFRAME = CFrame.new(150, 5, -800),
     MOVE_MODE        = "ZigZag",
     ZIGZAG_OFFSET    = 6,
@@ -157,8 +184,9 @@ local CONFIG = {
     ANTI = {
         AFK_INTERVAL     = 55,
         RECONNECT        = true,
-        PROPERTY_GUARD   = true,
-        HUMANOID_RESTORE = true,
+        -- Delta 下持续回写会覆盖移动加速、飞行和无限跳跃。
+        PROPERTY_GUARD   = false,
+        HUMANOID_RESTORE = false,
         WALK_SPEED       = 16,
         JUMP_POWER       = 50,
         TELEPORT_DELAY   = 0.07,
@@ -647,10 +675,15 @@ end
 ----------------------------------------------------------------
 
 local function getRarity(obj)
-    local attr = obj:GetAttribute("Rarity")
-        or obj:GetAttribute("RarityName")
-        or obj:GetAttribute("EggRarity")
-    if attr then return attr end
+    local current = obj
+    for _ = 1, 4 do
+        if not current then break end
+        local attr = current:GetAttribute("Rarity")
+            or current:GetAttribute("RarityName")
+            or current:GetAttribute("EggRarity")
+        if attr then return tostring(attr) end
+        current = current.Parent
+    end
 
     local name = string.lower(obj.Name)
     for _, rarity in ipairs(CONFIG.RARITY_PRIORITY) do
@@ -666,9 +699,12 @@ local function isEggCandidate(obj)
 
     local lowerName = string.lower(obj.Name)
     if string.find(lowerName, "hatch") then return false end
+    local slots = Workspace:FindFirstChild("AreaEggSlotsClient")
+    if slots and obj.Parent == slots then return true end
     if obj:GetAttribute("EggUid") or obj:GetAttribute("toolUidAttribute") then
         return true
     end
+    if obj:GetAttribute("UID") or obj:GetAttribute("Uid") then return true end
     if string.find(lowerName, "egg") then return true end
 
     for _, pat in ipairs(CONFIG.EXTRA_EGG_PATTERNS) do
@@ -681,6 +717,78 @@ local function isEggCandidate(obj)
             or obj:GetAttribute("EggRarity") ~= nil)
 end
 
+local function getEggUid(obj)
+    local current = obj
+    local slots = Workspace:FindFirstChild("AreaEggSlotsClient")
+    for _ = 1, 5 do
+        if not current or current == Workspace then break end
+        local uid = current:GetAttribute("UID")
+            or current:GetAttribute("Uid")
+            or current:GetAttribute("EggUid")
+            or current:GetAttribute("toolUidAttribute")
+        if uid then return tostring(uid) end
+        if slots and current.Parent == slots then return current.Name end
+        current = current.Parent
+    end
+    return obj.Name
+end
+
+local function hasCarriedEgg(uid)
+    local function scan(container)
+        if not container then return false end
+        for _, item in ipairs(container:GetChildren()) do
+            if item:IsA("Tool") then
+                local itemUid = item:GetAttribute("UID")
+                    or item:GetAttribute("Uid")
+                    or item:GetAttribute("EggUid")
+                if tostring(itemUid or item.Name) == tostring(uid) then
+                    return true
+                end
+            end
+        end
+        return false
+    end
+    return scan(LocalPlayer.Character) or scan(LocalPlayer:FindFirstChild("Backpack"))
+end
+
+local function countCarriedEggs()
+    local count = 0
+    local function scan(container)
+        if not container then return end
+        for _, item in ipairs(container:GetChildren()) do
+            if item:IsA("Tool") then
+                local lowerName = string.lower(item.Name)
+                if item:GetAttribute("UID") or item:GetAttribute("Uid")
+                    or item:GetAttribute("EggUid")
+                    or item:GetAttribute("Category")
+                    or item:GetAttribute("ItemType") == "Egg"
+                    or string.find(lowerName, "egg") then
+                    count += 1
+                end
+            end
+        end
+    end
+    scan(LocalPlayer.Character)
+    scan(LocalPlayer:FindFirstChild("Backpack"))
+    return count
+end
+
+local function requestEggCarry(uid)
+    if not EggCarryRemote or not uid then return false end
+    local function call(payload)
+        if EggCarryRemote:IsA("RemoteFunction") then
+            return EggCarryRemote:InvokeServer(payload)
+        end
+        EggCarryRemote:FireServer(payload)
+        return true
+    end
+    local ok = pcall(call, { Uid = uid })
+    if not hasCarriedEgg(uid) then
+        pcall(call, uid)
+    end
+    return ok
+end
+
 local function getObjectPosition(obj)
     if obj:IsA("Model") then
         local ok, pivot = pcall(obj.GetPivot, obj)
@@ -688,6 +796,8 @@ local function getObjectPosition(obj)
     end
     return obj.Position
 end
+
+local EggCooldown = {}
 
 local function findPriorityEgg()
     local root = getRoot()
@@ -699,6 +809,10 @@ local function findPriorityEgg()
 
     for _, obj in ipairs(Workspace:GetDescendants()) do
         if isEggCandidate(obj) then
+            local uid = getEggUid(obj)
+            local cooldownUntil = EggCooldown[uid]
+            if cooldownUntil and cooldownUntil > os.clock() then continue end
+            if cooldownUntil then EggCooldown[uid] = nil end
             -- 部分版本的鸡蛋没有稀有度属性；仍将其作为最低优先级目标。
             local rarity = getRarity(obj) or "Unknown"
             if CONFIG.TARGET_RARITIES[rarity] == nil then rarity = "Unknown" end
@@ -732,15 +846,43 @@ end
 
 local function goToTreadmill()
     updateStatus("正在前往跑步机……")
-    moveTarget(CONFIG.TREADMILL_CFRAME)
+    local targetCF = CONFIG.TREADMILL_SAVED and CONFIG.TREADMILL_CFRAME or nil
+    local targetPrompt
+    local treadmillPart = Workspace:FindFirstChild("TreadmillBottom", true)
+    if treadmillPart and treadmillPart:IsA("BasePart") then
+        targetCF = treadmillPart.CFrame + Vector3.new(0, 3, 0)
+    end
     for _, prompt in ipairs(Workspace:GetDescendants()) do
         if prompt:IsA("ProximityPrompt") and prompt.Parent then
             local n = string.lower(prompt.Parent.Name)
             if string.find(n, "treadmill") then
-                firePrompt(prompt)
+                targetPrompt = prompt
+                local part = prompt.Parent:IsA("BasePart") and prompt.Parent
+                    or prompt.Parent:FindFirstChildWhichIsA("BasePart", true)
+                if part then targetCF = part.CFrame + Vector3.new(0, 3, 0) end
                 break
             end
         end
+    end
+    if targetCF then moveTarget(targetCF) end
+    if targetPrompt then firePrompt(targetPrompt) end
+    local root = getRoot()
+    if root and treadmillPart and typeof(firetouchinterest) == "function" then
+        pcall(function()
+            treadmillPart.CanTouch = true
+            firetouchinterest(root, treadmillPart, 0)
+            task.wait(0.03)
+            firetouchinterest(root, treadmillPart, 1)
+        end)
+    end
+    if TreadmillMountRemote then
+        pcall(function()
+            if TreadmillMountRemote:IsA("RemoteFunction") then
+                TreadmillMountRemote:InvokeServer()
+            else
+                TreadmillMountRemote:FireServer()
+            end
+        end)
     end
 end
 
@@ -762,23 +904,40 @@ local function collectEgg(eggObj)
         return false
     end
 
-    moveTarget(targetCF + Vector3.new(0, 3, 0))
-    task.wait(0.15)
+    -- 实际游戏要求角色贴近蛋模型，并通过 AskFieldEggCarry 提交 UID。
+    moveTarget(targetCF * CFrame.new(0, 0.4, 0))
+    task.wait(0.08)
+    pcall(function()
+        LocalPlayer:RequestStreamAroundAsync(targetCF.Position)
+        if LocalPlayer.Character then
+            LocalPlayer.Character:PivotTo(targetCF * CFrame.new(0, 0.4, 0))
+        end
+    end)
 
-    local prompt = eggObj:FindFirstChildOfClass("ProximityPrompt")
-    if not prompt and eggObj.Parent then
-        prompt = eggObj.Parent:FindFirstChildOfClass("ProximityPrompt")
-    end
-    if not prompt then
-        for _, child in ipairs(eggObj:GetDescendants()) do
-            if child:IsA("ProximityPrompt") then
-                prompt = child
+    local uid = getEggUid(eggObj)
+    local interacted = false
+    local eggCountBefore = countCarriedEggs()
+    if EggCarryRemote and uid then
+        for _ = 1, 6 do
+            requestEggCarry(uid)
+            task.wait(0.12)
+            if hasCarriedEgg(uid) or countCarriedEggs() > eggCountBefore then
+                interacted = true
+                pcall(function()
+                    local hum = getHumanoid()
+                    if hum then hum:UnequipTools() end
+                end)
                 break
             end
         end
     end
 
-    if prompt then
+    local prompt = eggObj:FindFirstChildWhichIsA("ProximityPrompt", true)
+    if not prompt and eggObj.Parent then
+        prompt = eggObj.Parent:FindFirstChildWhichIsA("ProximityPrompt", true)
+    end
+
+    if not interacted and prompt then
         -- 临时放宽交互条件，并进行短间隔重试，提高移动端和高延迟环境的成功率。
         pcall(function()
             prompt.RequiresLineOfSight = false
@@ -789,9 +948,35 @@ local function collectEgg(eggObj)
         for attempt = 1, 3 do
             if not prompt.Parent or not eggObj.Parent then break end
             firePrompt(prompt)
+            interacted = true
             task.wait(0.12 + attempt * 0.04)
         end
+    elseif not interacted then
+        -- Delta 常见的另外两种拾取方式：ClickDetector 和触碰拾取。
+        local click = eggObj:FindFirstChildWhichIsA("ClickDetector", true)
+        if not click and eggObj.Parent then
+            click = eggObj.Parent:FindFirstChildWhichIsA("ClickDetector", true)
+        end
+        if click and typeof(fireclickdetector) == "function" then
+            interacted = pcall(fireclickdetector, click)
+        end
 
+        if not interacted and typeof(firetouchinterest) == "function" then
+            local root = getRoot()
+            local part = eggObj:IsA("BasePart") and eggObj
+                or eggObj:FindFirstChildWhichIsA("BasePart", true)
+            if root and part then
+                interacted = pcall(function()
+                    firetouchinterest(root, part, 0)
+                    task.wait(0.05)
+                    firetouchinterest(root, part, 1)
+                end)
+            end
+        end
+    end
+
+    if interacted then
+        EggCooldown[uid] = os.clock() + 5
         FLAGS.EggsCollected += 1
 
         -- EPM tracking
@@ -1282,6 +1467,7 @@ SaveBtn.MouseButton1Click:Connect(function()
     local root = getRoot()
     if root then
         CONFIG.TREADMILL_CFRAME = root.CFrame
+        CONFIG.TREADMILL_SAVED = true
         SaveBtn.Text = "位置已保存 ✓"
         task.delay(1.5, function() SaveBtn.Text = "保存当前位置" end)
     end
@@ -1386,6 +1572,9 @@ local function bypassStatusLabel(text, active)
     return lbl
 end
 
+bypassStatusLabel("Delta 兼容模式",                     DELTA_SAFE_MODE)
+bypassStatusLabel("鸡蛋拾取 Remote",                   EggCarryRemote ~= nil)
+bypassStatusLabel("跑步机 Remote",                     TreadmillMountRemote ~= nil)
 bypassStatusLabel("__namecall Hook（远程调用保护）",  hookMeta ~= nil)
 bypassStatusLabel("debug.info 信息隐藏",              safeHook ~= nil)
 bypassStatusLabel("脚本身份信息隐藏",                  typeof(getscriptidentity)=="function")
@@ -1542,9 +1731,13 @@ end))
 task.spawn(safeClosure(function()
     while FLAGS.Running do
         if FLAGS.AutoBoss then
-            pcall(handleBoss)
+            local ok, err = pcall(handleBoss)
+            if not ok then
+                warn("[VT-DELTA] 自动首领错误：", err)
+                updateStatus("自动首领发生错误，请查看 Delta 控制台")
+            end
         elseif FLAGS.AutoFarm then
-            pcall(function()
+            local ok, err = pcall(function()
                 local egg = findPriorityEgg()
                 if egg then
                     collectEgg(egg)
@@ -1554,6 +1747,10 @@ task.spawn(safeClosure(function()
                     updateStatus("正在等待鸡蛋……")
                 end
             end)
+            if not ok then
+                warn("[VT-DELTA] 自动拾取错误：", err)
+                updateStatus("自动拾取发生错误，请查看 Delta 控制台")
+            end
         else
             if FLAGS.CurrentStatus ~= "待机" then
                 updateStatus("待机")
@@ -1604,6 +1801,7 @@ local CHEAT = {
     PullEggs     = false,
     PullRadius   = 80,
     AutoCollect  = false,
+    PullBusy     = false,
     FlyConn      = nil,
     NoclipConn   = nil,
 }
@@ -1784,18 +1982,18 @@ local function startPull()
         end
         local root = getRoot()
         if not root then return end
+        local nearestEgg, nearestDistance
 
         for _, obj in ipairs(Workspace:GetDescendants()) do
-            local isEgg = (obj:IsA("BasePart") or obj:IsA("Model"))
-                and string.find(string.lower(obj.Name), "egg")
-                and not string.find(string.lower(obj.Name), "hatch")
+            if isEggCandidate(obj) then
+                local pos = getObjectPosition(obj)
 
-            if isEgg then
-                local pos = obj:IsA("Model")
-                    and obj:GetPivot().Position
-                    or obj.Position
-
-                if (root.Position - pos).Magnitude <= CHEAT.PullRadius then
+                if pos then
+                    local distance = (root.Position - pos).Magnitude
+                    if distance <= CHEAT.PullRadius then
+                        if not nearestDistance or distance < nearestDistance then
+                            nearestEgg, nearestDistance = obj, distance
+                        end
                     pcall(function()
                         if obj:IsA("Model") then
                             obj:PivotTo(CFrame.new(root.Position + Vector3.new(0,2,0)))
@@ -1803,13 +2001,20 @@ local function startPull()
                             obj.CFrame = CFrame.new(root.Position + Vector3.new(0,2,0))
                         end
                     end)
-
-                    -- auto-collect if toggled
-                    if CHEAT.AutoCollect then
-                        pcall(function() collectEgg(obj) end)
                     end
                 end
             end
+        end
+
+        -- 每次只处理一个目标，避免 Heartbeat 同时启动大量拾取协程。
+        if CHEAT.AutoCollect and nearestEgg and not CHEAT.PullBusy then
+            CHEAT.PullBusy = true
+            task.spawn(function()
+                local ok, err = pcall(collectEgg, nearestEgg)
+                if not ok then warn("[VT-DELTA] 吸附拾取错误：", err) end
+                task.wait(0.15)
+                CHEAT.PullBusy = false
+            end)
         end
     end))
 end
@@ -2020,8 +2225,9 @@ local function removeESP(key)
 end
 
 local function clearAllESP()
-    for key in pairs(ESP.Tags) do removeESP(key) end
     ESPFolder:ClearAllChildren()
+    ESP.Tags = {}
+    ESP.Boxes = {}
 end
 
 -- ESP loop
