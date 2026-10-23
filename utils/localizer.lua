@@ -11,6 +11,7 @@ end
 
 local Players = game:GetService("Players")
 local HttpService = game:GetService("HttpService")
+local UserInputService = game:GetService("UserInputService")
 local playerGui = Players.LocalPlayer:WaitForChild("PlayerGui")
 local connections, originals = {}, {}
 local active = true
@@ -18,10 +19,11 @@ local translations = {}
 local panel, status, output
 local exportPath = "gui_strings.json"
 local selectedGui
-local refreshCollection, selectNextGui
-local roots, baselineGuis = {}, {}
+local refreshCollection
+local picking = false
+local roots = {}
 local function belongsToTarget(obj)
-    return selectedGui ~= nil and selectedGui.Parent ~= nil and obj:IsDescendantOf(selectedGui)
+    return selectedGui ~= nil and selectedGui.Parent ~= nil and (obj == selectedGui or obj:IsDescendantOf(selectedGui))
 end
 
 if SETTINGS.mode == "translate" then
@@ -74,7 +76,7 @@ if SETTINGS.mode == "collect" then
     title.Size = UDim2.new(1, -16, 0, 30)
     title.Position = UDim2.fromOffset(8, 0)
     title.BackgroundTransparency = 1
-    title.Text = "先点“选择界面”，确认目标后展开菜单采集"
+    title.Text = "先点“点选界面”，再点击目标窗口的标题栏"
     title.TextColor3 = Color3.new(1, 1, 1)
     title.TextSize = 14
     title.TextWrapped = true
@@ -106,10 +108,10 @@ if SETTINGS.mode == "collect" then
         track(btn.Activated:Connect(callback))
         return btn
     end
-    local targetButton
-    targetButton = button("选择界面", 0, -82, function()
-        local name = selectNextGui()
-        targetButton.Text = name and ("界面：" .. name) or "选择界面"
+    button("点选界面", 0, -82, function()
+        picking = true
+        report("请点击目标窗口标题栏或空白区域；按 Esc 取消")
+        panel.Enabled = false
     end)
     button("刷新采集", 0.33, -82, function() refreshCollection() end)
     button("复制 JSON", 0.66, -82, function()
@@ -187,15 +189,11 @@ if type(gethui) == "function" then
     local success, hidden = pcall(gethui)
     if success and hidden then roots[#roots + 1] = hidden end
 end
--- 保存启动前的 GUI 清单，选择器排除这些游戏界面及自身面板。
 local seen = {}
 for _, root in ipairs(roots) do
     if not seen[root] then
         seen[root] = true
         pcall(function()
-            for _, obj in ipairs(root:GetDescendants()) do
-                if obj:IsA("ScreenGui") then baselineGuis[obj] = true end
-            end
             track(root.DescendantAdded:Connect(function(obj) task.defer(hook, obj) end))
         end)
     end
@@ -204,7 +202,9 @@ end
 refreshCollection = function()
     if not selectedGui or not selectedGui.Parent then report("请先选择脚本界面") return end
     originals = {}
-    for _, obj in ipairs(selectedGui:GetDescendants()) do
+    local objects = selectedGui:GetDescendants()
+    table.insert(objects, selectedGui)
+    for _, obj in ipairs(objects) do
         -- 重扫时直接读取当前值，已有控件继续使用原连接。
         local property = (obj:IsA("TextLabel") or obj:IsA("TextButton")) and "Text"
             or (obj:IsA("TextBox") and "PlaceholderText")
@@ -219,23 +219,81 @@ refreshCollection = function()
     report(string.format("目标：%s；已刷新 %d 条", selectedGui.Name, count))
 end
 
-selectNextGui = function()
-    local candidates, added = {}, {}
-    for _, root in ipairs(roots) do
-        pcall(function()
-            for _, obj in ipairs(root:GetDescendants()) do
-                if obj:IsA("ScreenGui") and not baselineGuis[obj] and obj ~= panel and not added[obj] then
-                    added[obj] = true
-                    candidates[#candidates + 1] = obj
+-- 选择点击对象所属的最外层窗口分支，支持已有 ScreenGui 和隐藏容器。
+local function windowFor(obj)
+    if panel and (obj == panel or obj:IsDescendantOf(panel)) then return nil end
+    local window = obj
+    while window.Parent and window.Parent:IsA("GuiObject") do
+        window = window.Parent
+    end
+    return window:IsA("GuiObject") and window or nil
+end
+
+local function visibleAt(obj, point)
+    if not obj:IsA("GuiObject") then return false end
+    local position, size = obj.AbsolutePosition, obj.AbsoluteSize
+    if point.X < position.X or point.Y < position.Y
+        or point.X >= position.X + size.X or point.Y >= position.Y + size.Y then return false end
+    local ancestor = obj
+    while ancestor do
+        if ancestor:IsA("GuiObject") and not ancestor.Visible then return false end
+        if ancestor:IsA("ScreenGui") and not ancestor.Enabled then return false end
+        ancestor = ancestor.Parent
+    end
+    return true
+end
+
+local function pickWindow(point)
+    for index = #roots, 1, -1 do
+        local root = roots[index]
+        local ok, hits = pcall(function()
+            return root:GetGuiObjectsAtPosition(point.X, point.Y)
+        end)
+        if not ok then
+            -- gethui 可能返回 Folder，使用其可见控件矩形作为回退。
+            hits = {}
+            pcall(function()
+                for _, obj in ipairs(root:GetDescendants()) do
+                    if visibleAt(obj, point) then hits[#hits + 1] = obj end
                 end
+            end)
+            table.sort(hits, function(a, b) return a.ZIndex > b.ZIndex end)
+        end
+        for _, obj in ipairs(hits) do
+            local window = windowFor(obj)
+            if window then return window end
+        end
+    end
+end
+
+if SETTINGS.mode == "collect" then
+    track(UserInputService.InputBegan:Connect(function(input)
+        if not picking then return end
+        if input.KeyCode == Enum.KeyCode.Escape then
+            picking = false
+            panel.Enabled = true
+            report("已取消点选")
+            return
+        end
+        if input.UserInputType ~= Enum.UserInputType.MouseButton1
+            and input.UserInputType ~= Enum.UserInputType.Touch then return end
+        local point = input.UserInputType == Enum.UserInputType.Touch
+            and Vector2.new(input.Position.X, input.Position.Y) or UserInputService:GetMouseLocation()
+        local target = pickWindow(point)
+        picking = false
+        -- 等本次点击结束再显示采集面板，避免挡住目标点击。
+        task.defer(function()
+            if not active then return end
+            panel.Enabled = true
+            if target then
+                selectedGui = target
+                refreshCollection()
+                report("已选中：" .. target:GetFullName())
+            else
+                report("此位置没有可选界面，请重新点选窗口标题栏")
             end
         end)
-    end
-    if #candidates == 0 then report("尚未发现新界面，请等待脚本加载完成") return selectedGui and selectedGui.Name end
-    local index = table.find(candidates, selectedGui) or 0
-    selectedGui = candidates[index % #candidates + 1]
-    refreshCollection()
-    return selectedGui.Name
+    end))
 end
 
 local function fetch(url)
@@ -266,6 +324,6 @@ task.spawn(function()
     if not success then
         report("脚本运行出错：" .. tostring(err))
     elseif SETTINGS.mode == "collect" then
-        report("脚本已执行；请点击“选择界面”，重复点击可切换目标")
+        report("脚本已执行；请点击“点选界面”，然后点击目标窗口标题栏")
     end
 end)
