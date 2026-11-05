@@ -35,7 +35,7 @@ def build(data, template):
     _, after = rest.split(end)
     payload = json.dumps(data, ensure_ascii=False, separators=(",", ":"))
     config = (
-        "\nlocal SETTINGS = { script_url = " + lua_literal(url) + ', mode = "translate" }\n'
+        "\nlocal SCRIPT_URL = " + lua_literal(url) + "\n"
         + "local EMBEDDED_JSON = " + lua_literal(payload) + "\n"
     )
     return before + start + config + end + after
@@ -48,7 +48,7 @@ def main():
     args = parser.parse_args()
     try:
         data = json.loads(args.json_file.read_text(encoding="utf-8-sig"))
-        template = Path(__file__).with_name("localizer.lua").read_text(encoding="utf-8")
+        template = Path(__file__).with_name("translator.lua").read_text(encoding="utf-8")
         result = build(data, template)
         with args.output.open("x", encoding="utf-8") as file:
             file.write(result)
