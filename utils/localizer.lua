@@ -219,9 +219,11 @@ refreshCollection = function()
     report(string.format("目标：%s；已刷新 %d 条", selectedGui.Name, count))
 end
 
--- 选择点击对象所属的最外层窗口分支，支持已有 ScreenGui 和隐藏容器。
+-- 选择整个 ScreenGui，避免标题栏与内容区为兄弟节点时漏采内容。
 local function windowFor(obj)
     if panel and (obj == panel or obj:IsDescendantOf(panel)) then return nil end
+    local screenGui = obj:FindFirstAncestorWhichIsA("ScreenGui")
+    if screenGui then return screenGui end
     local window = obj
     while window.Parent and window.Parent:IsA("GuiObject") do
         window = window.Parent
