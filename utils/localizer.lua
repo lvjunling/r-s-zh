@@ -63,8 +63,12 @@ if SETTINGS.mode == "collect" then
     panel = Instance.new("ScreenGui")
     panel.Name = "GuiLocalizerCollector"
     panel.ResetOnSpawn = false
-    panel.DisplayOrder = 10000
+    panel.DisplayOrder = 2147483647
     panel.Parent = playerGui
+    if type(gethui) == "function" then
+        local success, hidden = pcall(gethui)
+        if success and hidden then pcall(function() panel.Parent = hidden end) end
+    end
     local frame = Instance.new("Frame")
     frame.Size = UDim2.new(0.9, 0, 0.65, 0)
     frame.Position = UDim2.fromScale(0.05, 0.05)
@@ -303,7 +307,7 @@ if SETTINGS.mode == "collect" then
                 selectedGui = target
                 local count = refreshCollection()
                 if count then
-                    report(string.format("已选中：%s；已采集 %d 条", target:GetFullName(), count))
+                    report(string.format("已选；采集 %d 条", count))
                 end
             else
                 report("此位置没有可选界面，请重新点选窗口标题栏")
