@@ -22,6 +22,7 @@ local selectedGui
 local refreshCollection
 local picking = false
 local roots = {}
+local baselineGuis = {}
 local function belongsToTarget(obj)
     return selectedGui ~= nil and selectedGui.Parent ~= nil and (obj == selectedGui or obj:IsDescendantOf(selectedGui))
 end
@@ -193,6 +194,13 @@ local seen = {}
 for _, root in ipairs(roots) do
     if not seen[root] then
         seen[root] = true
+        if SETTINGS.mode == "collect" then
+            pcall(function()
+                for _, obj in ipairs(root:GetDescendants()) do
+                    if obj:IsA("ScreenGui") and obj ~= panel then baselineGuis[obj] = true end
+                end
+            end)
+        end
         pcall(function()
             track(root.DescendantAdded:Connect(function(obj) task.defer(hook, obj) end))
         end)
@@ -217,6 +225,7 @@ refreshCollection = function()
     local json, count = snapshot()
     output.Text = json
     report(string.format("目标：%s；已刷新 %d 条", selectedGui.Name, count))
+    return count
 end
 
 -- 选择整个 ScreenGui，避免标题栏与内容区为兄弟节点时漏采内容。
@@ -246,6 +255,7 @@ local function visibleAt(obj, point)
 end
 
 local function pickWindow(point)
+    local fallback
     for index = #roots, 1, -1 do
         local root = roots[index]
         local ok, hits = pcall(function()
@@ -263,9 +273,11 @@ local function pickWindow(point)
         end
         for _, obj in ipairs(hits) do
             local window = windowFor(obj)
-            if window then return window end
+            if window and not baselineGuis[window] then return window end
+            fallback = fallback or window
         end
     end
+    return fallback
 end
 
 if SETTINGS.mode == "collect" then
@@ -289,8 +301,10 @@ if SETTINGS.mode == "collect" then
             panel.Enabled = true
             if target then
                 selectedGui = target
-                refreshCollection()
-                report("已选中：" .. target:GetFullName())
+                local count = refreshCollection()
+                if count then
+                    report(string.format("已选中：%s；已采集 %d 条", target:GetFullName(), count))
+                end
             else
                 report("此位置没有可选界面，请重新点选窗口标题栏")
             end
