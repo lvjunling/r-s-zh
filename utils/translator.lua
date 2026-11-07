@@ -53,6 +53,41 @@ for _, root in ipairs(roots) do
     end
 end
 
+local drawingTexts = setmetatable({}, { __mode = "k" })
+if type(Drawing) == "table" and type(Drawing.new) == "function" then
+    local library = Drawing
+    local original = library.new
+    local function wrapped(kind, ...)
+        local obj = original(kind, ...)
+        if kind == "Text" then drawingTexts[obj] = true end
+        return obj
+    end
+    local installed = pcall(function() library.new = wrapped end) and library.new == wrapped
+    if not installed then
+        local proxy = setmetatable({ new = wrapped }, { __index = library })
+        pcall(function() Drawing = proxy end)
+    end
+end
+
+task.spawn(function()
+    while true do
+        for obj in pairs(drawingTexts) do
+            local success, text = pcall(function() return obj.Text end)
+            if not success and type(getrenderproperty) == "function" then
+                success, text = pcall(getrenderproperty, obj, "Text")
+            end
+            local translated = success and translations[text]
+            if type(translated) == "string" and translated ~= "" and translated ~= text then
+                local applied = pcall(function() obj.Text = translated end)
+                if not applied and type(setrenderproperty) == "function" then
+                    pcall(setrenderproperty, obj, "Text", translated)
+                end
+            end
+        end
+        task.wait(0.1)
+    end
+end)
+
 local function fetch(url)
     assert(type(url) == "string" and url:match("^https://"), "请配置 HTTPS 脚本地址")
     local success, source = pcall(function() return game:HttpGet(url) end)
