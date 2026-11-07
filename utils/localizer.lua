@@ -23,6 +23,9 @@ local refreshCollection
 local picking = false
 local roots = {}
 local baselineGuis = {}
+local drawingTexts = setmetatable({}, { __mode = "k" })
+local drawingCapture = false
+local restoreDrawingNew = function() end
 local function belongsToTarget(obj)
     return selectedGui ~= nil and selectedGui.Parent ~= nil and (obj == selectedGui or obj:IsDescendantOf(selectedGui))
 end
@@ -147,6 +150,7 @@ if SETTINGS.mode == "collect" then
     end)
     button("结束采集", 0.66, -42, function()
         active = false
+        restoreDrawingNew()
         for _, connection in ipairs(connections) do connection:Disconnect() end
         panel:Destroy()
     end)
@@ -225,6 +229,15 @@ refreshCollection = function()
             if text ~= "" and text:find("%S") then originals[text] = true end
             hook(obj)
         end
+    end
+    for obj in pairs(drawingTexts) do
+        local success, text = pcall(function() return obj.Visible ~= false and obj.Text end)
+        if not success and type(getrenderproperty) == "function" then
+            success, text = pcall(function()
+                return getrenderproperty(obj, "Visible") ~= false and getrenderproperty(obj, "Text")
+            end)
+        end
+        if success and type(text) == "string" and text:find("%S") then originals[text] = true end
     end
     local json, count = snapshot()
     output.Text = json
@@ -329,13 +342,39 @@ if SETTINGS.mode == "collect" then
                 local count = refreshCollection()
                 if count then
                     report(count > 0 and string.format("已选；采集 %d 条", count)
-                        or "0 条；可能是 Drawing 自绘界面")
+                        or (drawingCapture and "0 条；未发现可见自绘文字" or "0 条；不支持 Drawing 采集"))
                 end
             else
                 report("此位置没有可选界面，请重新点选窗口标题栏")
             end
         end)
     end))
+end
+
+if SETTINGS.mode == "collect" and type(Drawing) == "table" and type(Drawing.new) == "function" then
+    local library = Drawing
+    local original = library.new
+    local function wrapped(kind, ...)
+        local obj = original(kind, ...)
+        if kind == "Text" then drawingTexts[obj] = true end
+        return obj
+    end
+    local installed = pcall(function() library.new = wrapped end) and library.new == wrapped
+    local proxy
+    if not installed then
+        proxy = setmetatable({ new = wrapped }, { __index = library })
+        installed = pcall(function() Drawing = proxy end) and Drawing == proxy
+    end
+    if installed then
+        drawingCapture = true
+        restoreDrawingNew = function()
+            if proxy and Drawing == proxy then
+                pcall(function() Drawing = library end)
+            elseif library.new == wrapped then
+                pcall(function() library.new = original end)
+            end
+        end
+    end
 end
 
 local function fetch(url)
