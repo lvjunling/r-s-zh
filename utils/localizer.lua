@@ -244,6 +244,20 @@ local function windowFor(obj)
     return window:IsA("GuiObject") and window or nil
 end
 
+local function hasCollectibleText(root)
+    local found = false
+    pcall(function()
+        local objects = root:GetDescendants()
+        table.insert(objects, root)
+        for _, obj in ipairs(objects) do
+            local text = (obj:IsA("TextLabel") or obj:IsA("TextButton")) and obj.Text
+                or (obj:IsA("TextBox") and obj.PlaceholderText)
+            if type(text) == "string" and text:find("%S") then found = true break end
+        end
+    end)
+    return found
+end
+
 local function visibleAt(obj, point)
     if not obj:IsA("GuiObject") then return false end
     local position, size = obj.AbsolutePosition, obj.AbsoluteSize
@@ -259,13 +273,14 @@ local function visibleAt(obj, point)
 end
 
 local function pickWindow(point)
-    local fallback
+    local fallback, textFallback
+    local checked = {}
     for index = #roots, 1, -1 do
         local root = roots[index]
         local ok, hits = pcall(function()
             return root:GetGuiObjectsAtPosition(point.X, point.Y)
         end)
-        if not ok then
+        if not ok or type(hits) ~= "table" then
             -- gethui 可能返回 Folder，使用其可见控件矩形作为回退。
             hits = {}
             pcall(function()
@@ -277,11 +292,17 @@ local function pickWindow(point)
         end
         for _, obj in ipairs(hits) do
             local window = windowFor(obj)
-            if window and not baselineGuis[window] then return window end
-            fallback = fallback or window
+            if window and not checked[window] then
+                checked[window] = true
+                fallback = fallback or window
+                if hasCollectibleText(window) then
+                    if not baselineGuis[window] then return window end
+                    textFallback = textFallback or window
+                end
+            end
         end
     end
-    return fallback
+    return textFallback or fallback
 end
 
 if SETTINGS.mode == "collect" then
@@ -307,7 +328,8 @@ if SETTINGS.mode == "collect" then
                 selectedGui = target
                 local count = refreshCollection()
                 if count then
-                    report(string.format("已选；采集 %d 条", count))
+                    report(count > 0 and string.format("已选；采集 %d 条", count)
+                        or "0 条；可能是 Drawing 自绘界面")
                 end
             else
                 report("此位置没有可选界面，请重新点选窗口标题栏")
