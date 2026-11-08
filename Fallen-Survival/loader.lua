@@ -8,6 +8,64 @@
 		return
 	end
 
+	local UserInputService = game:GetService("UserInputService")
+
+	-- 移动端检测
+	local IsMobile = false
+	do
+		local Success, Touch, Keyboard = pcall(function()
+			return UserInputService.TouchEnabled, UserInputService.KeyboardEnabled
+		end)
+		IsMobile = Success and Touch == true and Keyboard ~= true
+	end
+	if IsMobile then
+		warn("检测到移动端环境，已启用移动端兼容模式。")
+	end
+
+	-- 执行器缺少 WorldToScreen 全局时使用相机投影回退
+	if type(WorldToScreen) ~= "function" then
+		WorldToScreen = function(Position)
+			local Camera = Workspace.CurrentCamera
+			if not Camera then
+				return Vector2.new(0, 0), false
+			end
+			local ScreenPos, OnScreen = Camera:WorldToViewportPoint(Position)
+			return Vector2.new(ScreenPos.X, ScreenPos.Y), OnScreen
+		end
+	end
+
+	-- 移动端没有鼠标指针，瞄准点改用屏幕中心
+	local function GetAimPoint()
+		if IsMobile then
+			local Camera = Workspace.CurrentCamera
+			local Viewport = Camera and Camera.ViewportSize or Vector2.new(0, 0)
+			return Vector2.new(Viewport.X / 2, Viewport.Y / 2)
+		end
+		local Mouse = LocalPlayer:GetMouse()
+		return Vector2.new(Mouse.X, Mouse.Y)
+	end
+
+	-- 移动端跳跃按钮监听，用于连跳
+	local MobileJumpTime = 0
+	if IsMobile then
+		UserInputService.JumpRequest:Connect(function()
+			MobileJumpTime = tick()
+		end)
+	end
+
+	-- 探测绘图库是否可用（部分移动端执行器不支持 Drawing）
+	local DrawingSupported = false
+	do
+		local Success = pcall(function()
+			local Probe = Drawing.new("Text")
+			Probe:Remove()
+		end)
+		DrawingSupported = Success
+	end
+	if not DrawingSupported then
+		warn("当前环境不支持绘图库，FOV 圆圈、瞄准连线与 ESP 标签已禁用。")
+	end
+
 	local Flags = {}
 
 	Flags.AimbotTargetPart = "头部"
@@ -248,8 +306,7 @@
 	end
 
 	local function ResolveTargetPart(Character, Head, HumanoidRootPart)
-		local Mouse = LocalPlayer:GetMouse()
-		local MousePos = Vector2.new(Mouse.X, Mouse.Y)
+		local MousePos = GetAimPoint()
 		local TargetPartName = Flags.AimbotTargetPart
 
 		if TargetPartName == "躯干" then
@@ -285,8 +342,7 @@
 	local function FindClosestViableTarget()
 		local ClosestTarget
 		local ClosestDistance = math.huge
-		local Mouse = LocalPlayer:GetMouse()
-		local MousePos = Vector2.new(Mouse.X, Mouse.Y)
+		local MousePos = GetAimPoint()
 		local LocalChar = LocalPlayer.Character
 		if not LocalChar then
 			return
@@ -531,6 +587,93 @@
 		warn("可选界面配置失败: " .. tostring(ThemeError))
 	end
 
+	-- 移动端没有键盘菜单键，添加可拖动的悬浮菜单按钮
+	if IsMobile then
+		local ButtonOk, ButtonError = pcall(function()
+			local ScreenGui = Instance.new("ScreenGui")
+			ScreenGui.Name = "DivineLandMobileToggle"
+			ScreenGui.ResetOnSpawn = false
+			ScreenGui.IgnoreGuiInset = true
+			if type(gethui) == "function" then
+				ScreenGui.Parent = gethui()
+			else
+				ScreenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
+			end
+
+			local Button = Instance.new("TextButton")
+			Button.Name = "MenuButton"
+			Button.Text = "菜单"
+			Button.TextSize = 16
+			Button.Font = Enum.Font.SourceSansBold
+			Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+			Button.BackgroundColor3 = Color3.fromRGB(0, 120, 110)
+			Button.BackgroundTransparency = 0.15
+			Button.Size = UDim2.fromOffset(64, 44)
+			Button.Position = UDim2.new(1, -76, 0.5, 40)
+			Button.AutoButtonColor = true
+			Button.Parent = ScreenGui
+
+			local Corner = Instance.new("UICorner")
+			Corner.CornerRadius = UDim.new(0, 10)
+			Corner.Parent = Button
+
+			local Dragging = false
+			local DragMoved = false
+			local DragStart, StartPos
+
+			Button.Activated:Connect(function()
+				if DragMoved then
+					return
+				end
+				pcall(function()
+					Win:Toggle()
+				end)
+			end)
+
+			Button.InputBegan:Connect(function(Input)
+				if Input.UserInputType == Enum.UserInputType.Touch
+					or Input.UserInputType == Enum.UserInputType.MouseButton1
+				then
+					Dragging = true
+					DragMoved = false
+					DragStart = Input.Position
+					StartPos = Button.Position
+				end
+			end)
+			Button.InputEnded:Connect(function(Input)
+				if Input.UserInputType == Enum.UserInputType.Touch
+					or Input.UserInputType == Enum.UserInputType.MouseButton1
+				then
+					Dragging = false
+					task.delay(0.1, function()
+						DragMoved = false
+					end)
+				end
+			end)
+			UserInputService.InputChanged:Connect(function(Input)
+				if
+					Dragging
+					and (Input.UserInputType == Enum.UserInputType.Touch
+						or Input.UserInputType == Enum.UserInputType.MouseMovement)
+				then
+					local Delta = Input.Position - DragStart
+					if math.abs(Delta.X) > 8 or math.abs(Delta.Y) > 8 then
+						DragMoved = true
+					end
+					Button.Position = UDim2.new(
+						StartPos.X.Scale,
+						StartPos.X.Offset + Delta.X,
+						StartPos.Y.Scale,
+						StartPos.Y.Offset + Delta.Y
+					)
+				end
+			end)
+		end)
+		if not ButtonOk then
+			warn("移动端悬浮菜单按钮创建失败: " .. tostring(ButtonError))
+		end
+	end
+
 	-- combat
 	local CombatTab = Win:Tab("战斗", "crosshair")
 
@@ -546,6 +689,12 @@
 	AimbotToggle:AddKeybind("MouseButton2", "Hold", function(Bool)
 		Flags.AimbotActive = Bool
 	end)
+
+	if IsMobile then
+		AimbotSec:Toggle("持续瞄准 (移动端)", false, function(Bool)
+			Flags.AimbotActive = Bool
+		end):Tooltip("移动端没有鼠标右键，开启后自瞄将一直生效。")
+	end
 
 	AimbotSec:Toggle("自动预测", false, function(Bool)
 		Flags.AutoPrediction = Bool
@@ -865,7 +1014,11 @@
 					end
 
 					local AimSuccess = pcall(function()
-						Camera.lookAt(CameraPosition, TargetPos)
+						if type(Camera.lookAt) == "function" then
+							Camera.lookAt(CameraPosition, TargetPos)
+						else
+							Camera.CFrame = CFrame.lookAt(CameraPosition, TargetPos)
+						end
 					end)
 					if not AimSuccess then
 						Flags.LockedTarget = nil
@@ -912,7 +1065,7 @@
 		end)
 	end
 
-	do
+	if DrawingSupported then
 		local FovCircle = Drawing.new("Circle")
 		FovCircle.Thickness = 1
 		FovCircle.NumSides = 120
@@ -926,8 +1079,7 @@
 		SnaplineOutline.Thickness = 3
 
 		RunService.RenderStepped:Connect(function()
-			local Mouse = LocalPlayer:GetMouse()
-			local MousePos = Vector2.new(Mouse.X, Mouse.Y)
+			local MousePos = GetAimPoint()
 
 			if Flags.AimbotFovCheck then
 				FovCircleOutline.Position = MousePos
@@ -973,7 +1125,7 @@
 		end)
 	end
 
-	do
+	if DrawingSupported then
 		local BoxCount = 8
 		local BoxSize = 64
 		local BoxSpacing = 5
@@ -1226,8 +1378,8 @@
 				not Humanoid
 				or type(memory_read) ~= "function"
 				or type(memory_write) ~= "function"
-				or type(iskeypressed) ~= "function"
-				or type(isrbxactive) ~= "function"
+				or (not IsMobile and type(iskeypressed) ~= "function")
+				or (not IsMobile and type(isrbxactive) ~= "function")
 			then
 				return
 			end
@@ -1246,6 +1398,9 @@
 			end
 
 			local InputSuccess, ShouldJump = pcall(function()
+				if IsMobile then
+					return FloorMaterial ~= 1792 and (tick() - MobileJumpTime) < 0.25
+				end
 				return FloorMaterial ~= 1792 and iskeypressed(32) and isrbxactive()
 			end)
 			if InputSuccess and ShouldJump then
@@ -1254,7 +1409,7 @@
 		end)
 	end
 
-	do
+	if DrawingSupported then
 		local EspPool = {}
 
 		local function GetOrCreateEspLabel(Index)
