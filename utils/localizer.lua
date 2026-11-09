@@ -144,10 +144,20 @@ if SETTINGS.mode == "collect" then
         local saved = type(writefile) == "function" and pcall(writefile, exportPath, json)
         report(string.format("已采集 %d 条；文件：%s", count, saved and exportPath or "未保存，请使用复制按钮"))
     end)
-    button("收起/展开", 0.33, -42, function()
-        output.Visible = not output.Visible
-        frame.Size = output.Visible and UDim2.new(0.9, 0, 0.65, 0) or UDim2.new(0.9, 0, 0, 126)
+    local restore
+    button("最小化界面", 0.33, -42, function()
+        frame.Visible = false
+        restore.Visible = true
     end)
+    restore = button("展开汉化界面", 0, -42, function()
+        frame.Visible = true
+        restore.Visible = false
+    end)
+    restore.Name = "RestoreLocalizer"
+    restore.Size = UDim2.fromOffset(160, 44)
+    restore.Position = frame.Position
+    restore.Visible = false
+    restore.Parent = panel
     button("结束采集", 0.66, -42, function()
         active = false
         restoreDrawingNew()
