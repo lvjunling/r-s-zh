@@ -1,5 +1,5 @@
 -- 狙击竞技场 · 简体中文 / PC 与触屏适配
--- 手机：点悬浮按钮保持瞄准；飞行使用摇杆及升降按钮；PC 保留右键和 WASD。
+-- 手机：在瞄准页启用辅助瞄准与持续瞄准；飞行使用摇杆及升降按钮；PC 保留右键和 WASD。
 --[[
     ELITE SCRIPTS  ·  SNIPER ARENA
     Fluent UI — compact, dense, customizable accent
@@ -185,7 +185,7 @@ local S = {
 
 -- ======================== STATE ========================
 local HoldingAim = false
-local Touch = {Aim = false}
+local Touch = {}
 if UserInputService.TouchEnabled then
     task.spawn(function()
         local ok, controls = pcall(function()
@@ -434,7 +434,7 @@ do
         connections[#connections + 1] = connection
     end
     local fitting = false
-    local function fitWindow()
+    local function fitWindow(keepWholeWindow)
         if fitting then return end
         local view = area.AbsoluteSize
         if view.X <= 16 or view.Y <= 16 then return end
@@ -448,8 +448,16 @@ do
             local anchor = root.AnchorPoint
             local x = root.Position.X.Scale * view.X + root.Position.X.Offset - anchor.X * width
             local y = root.Position.Y.Scale * view.Y + root.Position.Y.Offset - anchor.Y * height
-            x = math.clamp(x, 8, math.max(8, view.X - width - 8))
-            y = math.clamp(y, 8, math.max(8, view.Y - height - 8))
+            if keepWholeWindow then
+                x = math.clamp(x, 8, math.max(8, view.X - width - 8))
+                y = math.clamp(y, 8, math.max(8, view.Y - height - 8))
+            else
+                -- 满屏窗口也留出拖动空间，只保证标题栏可抓取。
+                local grabWidth = math.min(width, 160 * scale.Scale)
+                local grabHeight = math.min(height, 42 * scale.Scale)
+                x = math.clamp(x, 8 + grabWidth - width, math.max(8, view.X - grabWidth - 8))
+                y = math.clamp(y, 8, math.max(8, view.Y - grabHeight - 8))
+            end
             root.Position = UDim2.fromOffset(x + anchor.X * width, y + anchor.Y * height)
             Window.Position = root.Position
         end
@@ -472,24 +480,16 @@ do
         return btn
     end
     local menu = button("收起菜单", UDim2.new(1, -8, 0, 8), Vector2.new(1, 0), 120)
-    local aim = button("瞄准保持：关", UDim2.new(0.5, 0, 1, -16), Vector2.new(0.5, 1), 128)
     local up = button("上升", UDim2.new(0.5, -6, 1, -72), Vector2.new(1, 1), 64)
     local down = button("下降", UDim2.new(0.5, 6, 1, -72), Vector2.new(0, 1), 64)
     refreshTouchControls = function()
         local visible = UserInputService.TouchEnabled
-        menu.Visible, aim.Visible = visible, visible
+        menu.Visible = visible
         up.Visible = visible and S.Fly and flyBV ~= nil
         down.Visible = up.Visible
         menu.Text = Window.Root.Visible and "收起菜单" or "展开菜单"
-        aim.Text = Touch.Aim and "瞄准保持：开" or "瞄准保持：关"
-        aim.BackgroundColor3 = Touch.Aim and S.AccentColor or Color3.fromRGB(35, 29, 48)
     end
     menu.Activated:Connect(function() Window:Minimize() end)
-    aim.Activated:Connect(function()
-        Touch.Aim = not Touch.Aim
-        if Touch.Aim then Options.AimEnable:SetValue(true) end
-        refreshTouchControls()
-    end)
     for name, btn in pairs({Up = up, Down = down}) do
         btn.InputBegan:Connect(function(input)
             if Touch[name] then return end
@@ -504,29 +504,29 @@ do
         if input == Touch.Down then Touch.Down = nil end
     end))
     track(UserInputService.WindowFocusReleased:Connect(function()
-        HoldingAim, Touch.Aim, Touch.Up, Touch.Down = false, false, nil, nil
+        HoldingAim, Touch.Up, Touch.Down = false, nil, nil
         refreshTouchControls()
     end))
     track(UserInputService:GetPropertyChangedSignal("TouchEnabled"):Connect(function()
-        Touch.Aim, Touch.Up, Touch.Down = false, nil, nil
+        Touch.Up, Touch.Down = nil, nil
         refreshTouchControls()
     end))
     track(UserInputService:GetPropertyChangedSignal("PreferredInput"):Connect(function()
-        if not usingTouch() then Touch.Aim, Touch.Up, Touch.Down = false, nil, nil end
+        if not usingTouch() then Touch.Up, Touch.Down = nil, nil end
         refreshTouchControls()
     end))
-    track(area:GetPropertyChangedSignal("AbsoluteSize"):Connect(fitWindow))
-    track(Window.Root:GetPropertyChangedSignal("Size"):Connect(fitWindow))
+    track(area:GetPropertyChangedSignal("AbsoluteSize"):Connect(function() fitWindow(true) end))
+    track(Window.Root:GetPropertyChangedSignal("Size"):Connect(function() fitWindow(true) end))
     track(Window.Root:GetPropertyChangedSignal("Position"):Connect(fitWindow))
     track(Window.Root:GetPropertyChangedSignal("Visible"):Connect(refreshTouchControls))
     track(Window.Root.Destroying:Connect(function()
-        HoldingAim, Touch.Aim, Touch.Up, Touch.Down = false, false, nil, nil
+        HoldingAim, Touch.Up, Touch.Down = false, nil, nil
         setFly(false)
         for _, connection in ipairs(connections) do connection:Disconnect() end
         refreshTouchControls = function() end
         gui:Destroy()
     end))
-    fitWindow()
+    fitWindow(true)
     refreshTouchControls()
 end
 
@@ -543,11 +543,10 @@ do
     })
     Tabs.Home:AddToggle("HomeAim", {
         Title = "辅助瞄准",
+        Description = "手机请同时开启瞄准页的“持续瞄准”。",
         Default = false,
         Callback = function(v)
             S.Aimbot = v
-            if not v then Touch.Aim = false end
-            refreshTouchControls()
             if FOVCircle then FOVCircle.Visible = v and S.ShowFOV end
             if Options.AimEnable and Options.AimEnable.Value ~= v then Options.AimEnable:SetValue(v) end
         end
@@ -596,8 +595,6 @@ do
         Default = false,
         Callback = function(v)
             S.Aimbot = v
-            if not v then Touch.Aim = false end
-            refreshTouchControls()
             if FOVCircle then FOVCircle.Visible = v and S.ShowFOV end
             if Options.HomeAim and Options.HomeAim.Value ~= v then Options.HomeAim:SetValue(v) end
         end
@@ -620,6 +617,7 @@ do
     })
     Tabs.Aim:AddToggle("AlwaysOn", {
         Title = "持续瞄准",
+        Description = "先启用辅助瞄准，再开启此项；手机无需悬浮按钮，PC 无需按住右键。",
         Default = false,
         Callback = function(v) S.AlwaysOn = v end
     })
@@ -1690,7 +1688,7 @@ RunService.RenderStepped:Connect(function()
         target = getClosest()
     end
 
-    if S.Aimbot and (HoldingAim or Touch.Aim or S.AlwaysOn) and target then
+    if S.Aimbot and (HoldingAim or S.AlwaysOn) and target then
         aimAt(target)
     elseif S.SilentAim and target then
         aimAt(target)
