@@ -570,7 +570,7 @@ local function createKeybindList()
             tween("Height", root, 0.18, {Size = UDim2.fromOffset(280, height)})
         end
         local position = desiredPosition()
-        local visible = count > 0 and availableSpace() ~= nil
+        local visible = not usingTouch() and count > 0 and availableSpace() ~= nil
         if list.Color ~= Config.CircleColor then
             list.Color = Config.CircleColor
             stroke.Color, accent.BackgroundColor3 = list.Color, list.Color
@@ -2486,7 +2486,7 @@ local function setupChineseMobile()
         return btn
     end
     local holder = Instance.new("Frame", gui)
-    holder.Size, holder.Position = UDim2.fromOffset(248, 42), UDim2.new(1, -260, 0, 12)
+    holder.Size, holder.Position = UDim2.fromOffset(78, 42), UDim2.new(1, -90, 0, 12)
     holder.BackgroundTransparency = 1
     local menu = button("菜单", 0, 0, holder)
     menu.Activated:Connect(function()
@@ -2516,8 +2516,10 @@ local function setupChineseMobile()
         scale.Scale = math.max(0.1, math.min(zoom, (view.X - 24) / width, (view.Y - 70) / height))
         main.AnchorPoint, main.Position = Vector2.new(0.5,0.5), UDim2.fromScale(0.5,0.5)
     end
-    button("缩小 −", 84, 0, holder).Activated:Connect(function() zoom = math.max(0.3, zoom - 0.1); fitWindow() end)
-    button("放大 ＋", 168, 0, holder).Activated:Connect(function() zoom = math.min(1.2, zoom + 0.1); fitWindow() end)
+    State.SetWindowZoom = function(delta)
+        zoom = math.clamp(zoom + delta, 0.3, 1.2)
+        fitWindow()
+    end
     local cameraConnection
     local function bindCamera()
         if cameraConnection then cameraConnection:Disconnect() end
@@ -2533,21 +2535,11 @@ local function setupChineseMobile()
     State.MobileFlight = {}
     if UserInputService.TouchEnabled then
         local pad = Instance.new("Frame", gui)
-        pad.Size, pad.Position = UDim2.fromOffset(248, 224), UDim2.new(1, -260, 1, -350)
+        pad.Size, pad.Position = UDim2.fromOffset(248, 88), UDim2.new(1, -260, 1, -240)
         pad.BackgroundTransparency = 1
-        local rows = {
-            {"瞄准", function() setAimEnabled(not Config.Enabled, true) end},
-            {"车辆飞行", function() setVehicleFlight(not Config.VehicleFly, true) end},
-            {"加速", function() setVehicleBoost(not Config.VehicleAcceleration, true) end},
-            {"角色穿墙", function() setNoclip(not Config.Noclip, true) end},
-            {"车辆穿墙", function() setVehicleNoclip(not Config.VehicleNoclip, true) end},
-        }
-        for index, row in ipairs(rows) do
-            button(row[1], ((index - 1) % 3) * 84, math.floor((index - 1) / 3) * 46, pad).Activated:Connect(row[2])
-        end
         local controls = {{"前进","Forward"},{"上升","Up"},{"后退","Back"},{"左移","Left"},{"下降","Down"},{"右移","Right"}}
         for index, item in ipairs(controls) do
-            local btn = button(item[1], ((index - 1) % 3) * 84, 96 + math.floor((index - 1) / 3) * 46, pad)
+            local btn = button(item[1], ((index - 1) % 3) * 84, math.floor((index - 1) / 3) * 46, pad)
             btn.InputBegan:Connect(function(input)
                 if input.UserInputType ~= Enum.UserInputType.Touch and input.UserInputType ~= Enum.UserInputType.MouseButton1 then return end
                 State.MobileFlight[item[2]] = 1
@@ -2562,14 +2554,19 @@ local function setupChineseMobile()
             end)
         end
         table.insert(State.Connections, UserInputService.WindowFocusReleased:Connect(function() State.MobileFlight = {} end))
-        local show = true
-        button("操作栏", 168, 46, pad).Activated:Connect(function()
-            show = not show
-            for _, child in ipairs(pad:GetChildren()) do
-                if child:IsA("TextButton") and child.Text ~= "操作栏" then child.Visible = show end
-            end
-        end)
+        pad.Visible = false
+        State.MobileFlightPad = pad
     end
+    State.UpdateMobileVisibility = function()
+        local menuOpen = State.Window and State.Window.State == true
+        holder.Visible = not menuOpen
+        if State.MobileFlightPad then
+            local visible = usingTouch() and Config.VehicleFly and not menuOpen
+            State.MobileFlightPad.Visible = visible
+            if not visible then State.MobileFlight = {} end
+        end
+    end
+    State.UpdateMobileVisibility()
     State.MobileGui = gui
 end
 
@@ -2885,6 +2882,12 @@ local function setup()
             .. "The circle and target selection share the exact screen center. "
             .. "Luna blur is disabled.",
     })
+    visuals:CreateButton({Name = "缩小界面", Callback = function()
+        if State.SetWindowZoom then State.SetWindowZoom(-0.1) end
+    end})
+    visuals:CreateButton({Name = "放大界面", Callback = function()
+        if State.SetWindowZoom then State.SetWindowZoom(0.1) end
+    end})
     visuals:BuildThemeSection()
     local movementTab = window:CreateTab({Name = "Movement", Icon = "directions_walk", ImageSource = "Material"})
     State.Controls.Noclip = movementTab:CreateToggle({
@@ -3081,6 +3084,7 @@ local function setup()
     end))
     table.insert(State.Connections, RunService.RenderStepped:Connect(function()
         runFeature("KeybindHUD", updateKeybindList)
+        if State.UpdateMobileVisibility then State.UpdateMobileVisibility() end
     end))
     table.insert(State.Connections, RunService.RenderStepped:Connect(function(dt)
         if not State.Alive then return end
