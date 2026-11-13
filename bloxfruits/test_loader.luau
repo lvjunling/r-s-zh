@@ -1,0 +1,8 @@
+local fs = require("@lune/fs")
+local luau = require("@lune/luau")
+local source = fs.readFile("bloxfruits/loader.lua")
+assert(type(luau.load(source)) == "function")
+assert(source:find("https://nolag.wtf/script.lua", 1, true))
+assert(not source:find("GuiLocalizerCollector", 1, true))
+assert(not source:find("writefile", 1, true))
+print("编译、目标地址及无采集代码检查通过；未执行远程脚本")
