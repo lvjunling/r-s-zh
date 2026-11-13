@@ -1,0 +1,26 @@
+local fs=require("@lune/fs")
+local luau=require("@lune/luau")
+local serde=require("@lune/serde")
+local source=fs.readFile("tww/loader.lua")
+assert(type(luau.load(source))=="function")
+assert(not source:find("SMUGLIB_URL",1,true))
+assert(not source:find("factory()",1,true))
+local translations=assert(source:match('(local dictionary=.-)\nfunction Library:CreateWindow'))
+local tr=luau.load('local translate\n'..translations..'\nreturn translate',{
+    environment={game={GetService=function() return {JSONDecode=function(_,v) return serde.decode("json",v) end} end}}
+})()
+assert(tr("🎯 Enable Silent Aim")=="启用静默瞄准")
+assert(tr("💰 Bank Gold Bars: ✅ 5 gold bars")=="银行金条：5 根")
+assert(tr("unknown")=="unknown")
+local body=assert(source:match('local function fitted%(width,height,value%)(.-) end'))
+local fit=luau.load('return function(width,height,value) '..body..' end')()
+for _,v in {{390,844},{844,390},{1920,1080}} do
+ local scale=fit(v[1],v[2],1)
+ assert(scale*620<=v[1]-24+.001 and scale*480<=v[2]-70+.001)
+end
+local original=fs.readFile("tww/loader.before_zh_mobile.lua")
+local old=assert(original:match('local run = %(function%(%)(.*)'))
+local new=assert(source:match('local run = %(function%(%)(.*)'))
+old=old:gsub('"🤠 TWW | SmugLibV2"','"TWW 中文版"')
+assert(old==new,"原游戏逻辑应保持一致")
+print("编译、中文映射、横竖屏缩放、卡密移除及游戏逻辑完整性检查通过")
