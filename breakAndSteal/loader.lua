@@ -1,0 +1,80 @@
+-- 简体中文界面翻译加载器
+-- BEGIN GENERATED CONFIG
+local SCRIPT_URL = [[https://raw.githubusercontent.com/MUshihara/Serenity-hub/main/loader.lua]]
+local EMBEDDED_JSON = [[{"version":1,"script_url":"https://raw.githubusercontent.com/MUshihara/Serenity-hub/main/loader.lua","translations":{"#1  Lizard":"#1  蜥蜴","#2  Goldfish":"#2  金鱼","+1 Cut Grass Adventure":"+1 割草冒险","+1 Dino Evolution":"+1 恐龙进化","+1 Drain Water Per Click":"每次点击排水 +1","+1 Loot to Forge":"+1 战利品锻造","+1 Monkey Evolution":"+1 猴子进化","+1 Phonk Evolution":"+1 Phonk 进化","+1 Strength to Grow Your Arm":"+1 力量壮大手臂","+1 Superhero Evolution":"+1 超级英雄进化","+1 Tongue Escape":"+1 舌头逃生","30-Minute Session Summary":"30 分钟运行摘要","3D Disabled Screen":"3D 渲染已关闭","7\nActions":"7\n操作","ABOUT SERENITY HUB":"关于 Serenity 工具箱","About":"关于","Actions":"操作","Added 5T, 10T, 25T, 50T and 100T minimum Auto Steal options.":"自动偷取最低价值新增 5T、10T、25T、50T 和 100T 选项。","Advanced appearance":"高级外观","All":"全部","Anime Dice":"动漫骰子","Anti Ragdoll":"防布娃娃状态","Anti-AFK":"防挂机","Antique Gold":"古典金色","Any":"任意","Appearance & presets  ›":"外观与预设  ›","Aurora":"极光","Auto Bat Carried Target":"自动用球棒攻击携带目标的玩家","Auto Bat Chase":"自动持球棒追击","Auto Break":"自动破坏","Auto Break Eggs":"自动破蛋","Auto Buy Pickaxes":"自动购买镐子","Auto Buy Trails":"自动购买尾迹","Auto Claim Index":"自动领取图鉴奖励","Auto Complete Tutorial":"自动完成新手教程","Auto Equip Best":"自动装备最佳宠物","Auto Fuse Pets":"自动融合宠物","Auto Hatch Egg":"自动孵蛋","Auto Hatch Status":"自动孵蛋状态","Auto Hatch off":"自动孵蛋已关闭","Auto Merge":"自动合并","Auto Place Egg":"自动放蛋","Auto Place Egg Limit":"自动放蛋数量上限","Auto Place Pet":"自动放置宠物","Auto Sell Eggs":"自动出售蛋","Auto Sell Pets":"自动出售宠物","Auto Steal":"自动偷取","Auto Steal improved":"自动偷取优化","Auto Steal mutations":"自动偷取变异筛选","Auto Steal: ON · Auto Break: ON · Ready for next task":"自动偷取：开启 · 自动破坏：开启 · 等待下一个任务","Auto Treadmill":"自动跑步机","Auto Upgrade Pen":"自动升级围栏","Auto Upgrade Treadmill":"自动升级跑步机","Automation":"自动化","Automation Priority":"自动任务优先级","Availability refreshed for this session. Updated = runtime-file change, in Philippine time (UTC+8).":"本次会话可用状态已刷新。“更新时间”指运行文件变更时间，采用菲律宾时间（UTC+8）。","Average Bank Time":"平均送回耗时","Bahasa Indonesia":"印度尼西亚语","Banks 7 · E":"送回 7 次 · E","Basic":"基础","Best Pet Steal":"偷取的最佳宠物","Bike For Egg!":"骑车获取蛋！","Black":"黑色","Blur Amount":"模糊程度","Border colors":"边框颜色","Border intensity":"边框强度","Brazilian Portuguese":"巴西葡萄牙语","Break and Steal an Egg":"破蛋与偷蛋","Break and Steal an Egg · v1.4":"破蛋与偷蛋 · v1.4","Break and Steal an Egg · v1.44":"破蛋与偷蛋 · v1.44","Break and Steal an Egg · v1.51":"破蛋与偷蛋 · v1.51","Break and Steal an Egg · v1.52":"破蛋与偷蛋 · v1.52","Break and Steal an Egg · v1.54":"破蛋与偷蛋 · v1.54","Bug report":"问题报告","CURRENT GAME":"当前游戏","Celestial Glass":"星空玻璃","Character":"角色","Character Respawns":"角色重生次数","Cheating During Testing":"测试时使用辅助","Chicken Farm":"养鸡场","Choose your language. Changes save automatically.":"选择你的语言，更改会自动保存。","Collect All the Leaves":"收集所有叶子","Color theme":"配色主题","Common":"普通","Confirmed Banks":"已确认送回次数","Current · Updated 28 Oct 2026 · 02:46":"当前版本 · 更新于 2026-10-28 · 02:46","Customize":"自定义","DE":"DE","DISCONTINUED":"已停止维护","Dashboard":"概览","Deep Ocean":"深海","Deutsch":"德语","Disable 3D Rendering":"关闭 3D 渲染","Discontinued":"已停止维护","Discord":"Discord","Discord Webhook URL":"Discord Webhook 地址","Drag style":"拖动样式","Dusk":"黄昏","EN":"EN","ES":"ES","ESP":"透视","Egg ESP":"蛋透视","Egg Placement Filter":"放蛋筛选","Egg Placement Rarities":"放置蛋的稀有度","Egg Rarities":"蛋稀有度","Egg Sell Filter":"售蛋筛选","Egg Sort":"蛋排序","Eggs Broken":"已破坏的蛋","Elapsed":"已运行时长","Ember":"余烬","Enable Webhook":"启用消息推送","English":"英语","Español":"西班牙语","Espresso":"浓缩咖啡","Everything you need, within reach.":"常用功能，触手可及。","Expired seasonal automation and controls removed.":"已移除过期的季节活动自动化功能及控件。","FIL":"FIL","FPS":"帧率","FPS Unlocker":"解除帧率限制","FR":"FR","Failed Pickups":"拾取失败次数","Fairy Castle support with Spectral and Ethereal rarities.":"新增仙灵城堡及幽灵、空灵稀有度支持。","Fantasy Expansion support with Primordial rarity.":"新增奇幻扩展及原初稀有度支持。","Feedback":"意见反馈","Filipino":"菲律宾语","Find your game and check its availability and latest script update.":"查找游戏，查看可用状态和脚本最近更新时间。","Français":"法语","French":"法语","Frost":"冰霜","GAME DIRECTORY":"游戏目录","Galaxy Zone":"银河区域","Garnet":"石榴石","Gentle cues for categories, confirmations and window controls.":"为分类、确认及窗口控件提供轻柔提示音。","German":"德语","Glass material":"玻璃材质","Global":"全局","Goldfish":"金鱼","Graphite":"石墨","Greedy Growers":"贪婪种植者","Guard Recoveries":"守卫干扰恢复次数","Halloween removed":"移除万圣节活动","Help with keys, updates and premium.":"获取密钥、更新及高级版相关帮助。","Heroes RNG":"英雄 RNG","Hide Inventory During Automation":"自动执行期间隐藏背包","Hide my identity":"隐藏身份","Hide my name":"隐藏名称","Hide your name and avatar across the UI.":"在整个界面中隐藏你的名称和头像。","Highest":"最高","Highest Value":"价值最高","ID":"ID","Improved delayed pickup confirmation and Auto Break recovery, with fewer unnecessary return resets.":"优化延迟拾取确认及自动破坏恢复，减少不必要的返回重置。","Improved recovery when a target has an unavailable pickup prompt.":"优化目标拾取提示不可用时的恢复逻辑。","Indonesian":"印度尼西亚语","Industrial":"工业风","Instant":"瞬间","Instant Grab Egg":"瞬间拿蛋","Interface sounds":"界面音效","Inventory":"背包","Jade":"翡翠","Join Discord  ↗":"加入 Discord  ↗","Jump To Steal Soccer Players":"跳跃偷取足球运动员","KEY STATUS":"密钥状态","Keep Copies Per Pet":"每种宠物保留数量","Keep Highest Value Eggs":"保留价值最高的蛋","Keep Strongest Eligible":"保留符合条件的最强宠物","Key help":"密钥帮助","LIVE":"实时","Label":"标签","Lag Reducer":"减少卡顿","Languages":"语言","Lift Rock for Eggs":"举石获取蛋","Lift a Cube":"举方块","Live Pet Ranking":"宠物实时排名","MM2":"MM2","Match theme":"跟随主题","Material opacity":"材质不透明度","Max Rarity to Fuse":"允许融合的最高稀有度","Mine a Mountain":"挖掘山脉","Minimum /s to Display":"显示的最低每秒收益","Minimum /s to Notify":"通知的最低每秒收益","Minimum Value / Second":"最低每秒收益","Misc":"杂项","Moonstone":"月光石","More steal value choices":"更多偷取价值选项","Music-reactive runes":"随音乐变化的符文","Mutations":"变异效果","New mutation selection alongside pet and rarity filters.":"在宠物和稀有度筛选之外新增变异选择。","No Prompt":"无交互提示","No exposed/carried pets detected":"未发现暴露或被携带的宠物","No matching games. Try another search or filter.":"没有匹配的游戏，请尝试其他搜索词或筛选条件。","Noclip":"穿墙","Not Active":"未启用","Not checked":"尚未检查","Off":"关闭","Open UI  ›":"打开界面  ›","Other":"其他","PATCHED":"已被游戏修复","PT-BR":"PT-BR","Patched":"已被游戏修复","Pet Portraits":"宠物头像","Pet Rarities":"宠物稀有度","Pet Sell Filter":"宠物出售筛选","Petrol":"石油蓝","Play test sound  ›":"播放测试音效  ›","Português (Brasil)":"葡萄牙语（巴西）","Preset gallery":"预设库","Priority Sort":"优先级排序","Privacy":"隐私","Profile":"个人资料","Progression":"成长进度","Quick Menu":"快捷菜单","RU":"RU","Rarities":"稀有度","Ready":"就绪","Recommended":"推荐","Reduced motion":"减少动画","Refresh Now":"立即刷新","Remove My Eggs":"移除自己的蛋","Remove My Pets":"移除自己的宠物","Remove Other Pets":"移除其他玩家的宠物","Remove Screen Effects":"移除屏幕特效","Report a problem or share an idea.":"报告问题或分享建议。","Reset all floating positions":"重置所有悬浮窗口位置","Resolved repeated nil-function scheduler restart error.":"修复调度器重启时反复出现的空函数错误。","Restore preferred appearance":"恢复偏好外观","Rewards":"奖励","Ride A Pet":"骑宠","Roll Anime to Fight":"抽取动漫角色战斗","Rose":"玫瑰","Rose Quartz":"玫瑰石英","Russian":"俄语","SERENITY":"Serenity","SERENITY HUB":"Serenity 工具箱","SESSION":"本次会话","SUPPORTED":"支持","Scheduler stability":"调度器稳定性","Search for the Needle":"寻找针","Search supported games...":"搜索支持的游戏…","Select options":"选择选项","Sell Ores":"出售矿石","Send":"发送","Sends your message and game details to Serenity.":"将你的消息与游戏详情发送至 Serenity。","Serenity Grimoire":"Serenity 魔法书","Serenity Hub Discord":"Serenity 工具箱 Discord","Server Pets":"服务器宠物","Server pets  ›":"服务器宠物  ›","Settings":"设置","Show Top":"显示前几名","Skip Mutated Pets":"跳过变异宠物","Smooth":"平滑","Softly follow game music. Supports Sound tracks; stops with Reduced motion.":"柔和跟随游戏音乐变化，支持 Sound 音轨；开启“减少动画”后停止。","Sound volume":"音量","Spanish":"西班牙语","Specific Eggs":"指定蛋","Specific Eggs to Place":"指定要放置的蛋","Specific Pets":"指定宠物","Specific Pets to Fuse":"指定要融合的宠物","Specific Stage":"指定阶段","Stability improvements":"稳定性改进","Stage / Egg Rarity":"阶段／蛋稀有度","Stage Mode":"阶段模式","Steal":"偷取","Steal A Seed":"偷种子","Steal An Anime Egg":"偷动漫蛋","Steal Mode":"偷取模式","Steal a Pet and Ride It":"偷宠并骑乘","Suggestion":"建议","Supported":"支持","Supported Games":"支持的游戏","TH":"TH","Thai":"泰语","Throw Food for Animals":"给动物投喂食物","Throw a Coin":"投掷硬币","Titanic Egg ESP":"泰坦蛋透视","Titanic Egg Priority":"泰坦蛋优先级","Tiếng Việt":"越南语","Tree Egg":"树蛋","Tutorial Status":"教程状态","UI TESTER":"界面测试","UI preferences  ›":"界面偏好设置  ›","Unscathed RNG":"无伤 RNG","Updated 02 Nov 2026 · 03:30":"更新于 2026-11-02 · 03:30","Updated 02 Nov 2026 · 04:16":"更新于 2026-11-02 · 04:16","Updated 02 Nov 2026 · 04:17":"更新于 2026-11-02 · 04:17","Updated 04 Sep 2026 · 10:24":"更新于 2026-09-04 · 10:24","Updated 05 Sep 2026 · 15:19":"更新于 2026-09-05 · 15:19","Updated 07 Sep 2026 · 19:45":"更新于 2026-09-07 · 19:45","Updated 08 Sep 2026 · 18:45":"更新于 2026-09-08 · 18:45","Updated 09 Sep 2026 · 07:52":"更新于 2026-09-09 · 07:52","Updated 12 Sep 2026 · 01:17":"更新于 2026-09-12 · 01:17","Updated 12 Sep 2026 · 12:44":"更新于 2026-09-12 · 12:44","Updated 13 Oct 2026 · 22:52":"更新于 2026-10-13 · 22:52","Updated 15 Sep 2026 · 19:32":"更新于 2026-09-15 · 19:32","Updated 15 Sep 2026 · 19:38":"更新于 2026-09-15 · 19:38","Updated 17 Sep 2026 · 16:39":"更新于 2026-09-17 · 16:39","Updated 17 Sep 2026 · 18:50":"更新于 2026-09-17 · 18:50","Updated 20 Oct 2026 · 23:54":"更新于 2026-10-20 · 23:54","Updated 21 Oct 2026 · 01:56":"更新于 2026-10-21 · 01:56","Updated 21 Oct 2026 · 02:29":"更新于 2026-10-21 · 02:29","Updated 26 Aug 2026 · 01:27":"更新于 2026-08-26 · 01:27","Updated 26 Aug 2026 · 20:03":"更新于 2026-08-26 · 20:03","Updated 26 Aug 2026 · 21:12":"更新于 2026-08-26 · 21:12","Updated 26 Sep 2026 · 11:50":"更新于 2026-09-26 · 11:50","Updated 27 Aug 2026 · 23:46":"更新于 2026-08-27 · 23:46","Updated 28 Aug 2026 · 02:11":"更新于 2026-08-28 · 02:11","Updated 28 Oct 2026 · 02:09":"更新于 2026-10-28 · 02:09","Updated 30 Aug 2026 · 00:24":"更新于 2026-08-30 · 00:24","Updated 30 Aug 2026 · 11:00":"更新于 2026-08-30 · 11:00","Updated 31 Aug 2026 · 23:53":"更新于 2026-08-31 · 23:53","VI":"VI","Vietnamese":"越南语","Violet":"紫罗兰","Waiting...":"等待中…","Wall Resets":"墙体重置次数","Webhook":"消息推送","Webhook Status":"消息推送状态","What happened? What did you expect?":"发生了什么问题？你期望的结果是什么？","What's new":"更新内容","Whitelist":"白名单","Window movement":"窗口移动","Your identity and interface style.":"你的身份信息与界面风格。","Your message":"你的消息","Your space":"你的空间","Your workspace, at a glance.":"一览你的工作区。","Zone 12 added":"新增第 12 区域","Zone 13 added":"新增第 13 区域","https://discord.com/api/webhooks/...":"https://discord.com/api/webhooks/...","Русский":"俄语","ไทย":"泰语","◆  Animal Merging":"◆  动物合并","◆  Auto Break":"◆  自动破坏","◆  Auto Placement":"◆  自动放置","◆  Auto Sell Eggs":"◆  自动出售蛋","◆  Auto Sell Pets":"◆  自动出售宠物","◆  Auto Steal":"◆  自动偷取","◆  Automatic Upgrades":"◆  自动升级","◆  Character":"◆  角色","◆  Discord Notifications":"◆  Discord 通知","◆  Egg ESP":"◆  蛋透视","◆  Fuse Machine":"◆  融合机器","◆  Lag Reducer":"◆  减少卡顿","◆  Movement":"◆  移动","◆  Performance":"◆  性能","◆  Session Highlights":"◆  本次运行亮点","◆  Titanic Egg ESP":"◆  泰坦蛋透视","◆  Treadmill":"◆  跑步机","◆  Tutorial":"◆  新手教程","打破并偷走一个鸡蛋 ":"打破并偷走一个鸡蛋 "}}]]
+-- END GENERATED CONFIG
+
+local HttpService = game:GetService("HttpService")
+local translations = HttpService:JSONDecode(EMBEDDED_JSON).translations
+local hooked = setmetatable({}, { __mode = "k" })
+
+local function hook(obj)
+    if hooked[obj] then return end
+    local property
+    if obj:IsA("TextLabel") or obj:IsA("TextButton") then
+        property = "Text"
+    elseif obj:IsA("TextBox") then
+        -- 保留用户输入，只翻译输入框占位提示。
+        property = "PlaceholderText"
+    else
+        return
+    end
+    hooked[obj] = true
+    local applying = false
+    local function apply()
+        if applying then return end
+        local text = obj[property]
+        local translated = translations[text]
+        if type(translated) == "string" and translated ~= "" and translated ~= text then
+            applying = true
+            obj[property] = translated
+            applying = false
+        end
+    end
+    apply()
+    obj:GetPropertyChangedSignal(property):Connect(apply)
+end
+
+local playerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+local roots = { playerGui }
+local ok, coreGui = pcall(function() return game:GetService("CoreGui") end)
+if ok then roots[#roots + 1] = coreGui end
+if type(gethui) == "function" then
+    local success, hidden = pcall(gethui)
+    if success and hidden then roots[#roots + 1] = hidden end
+end
+local seen = {}
+for _, root in ipairs(roots) do
+    if not seen[root] then
+        seen[root] = true
+        pcall(function()
+            root.DescendantAdded:Connect(function(obj) task.defer(hook, obj) end)
+        end)
+    end
+end
+
+local function fetch(url)
+    assert(type(url) == "string" and url:match("^https://"), "请配置 HTTPS 脚本地址")
+    local success, source = pcall(function() return game:HttpGet(url) end)
+    if success and type(source) == "string" and #source > 0 then return source end
+    local requestFn = request or http_request or (syn and syn.request)
+    if type(requestFn) == "function" then
+        local fetched, response = pcall(requestFn, { Url = url, Method = "GET" })
+        if fetched and type(response) == "table" then
+            local code = tonumber(response.StatusCode or response.Status)
+            if code and code >= 200 and code < 300 and type(response.Body) == "string" and #response.Body > 0 then
+                return response.Body
+            end
+        end
+    end
+    error("下载失败，请检查 URL、网络与执行器的 HTTP 支持")
+end
+
+local success, err = pcall(function()
+    local source = fetch(SCRIPT_URL)
+    assert(type(loadstring) == "function", "执行器缺少 loadstring")
+    local fn, compileError = loadstring(source)
+    assert(fn, compileError)
+    fn()
+end)
+if not success then warn("[界面汉化] " .. tostring(err)) end
