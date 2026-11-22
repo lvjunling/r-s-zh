@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "script_url": "https://raw.githubusercontent.com/mantuafrancisdarleyb26-hue/ishin-lua/refs/heads/main/ishin.lua",
+  "translations": {
+    "ISHIN": "ISHIN",
+    "ISHIN | MULTI SYSTEM": "ISHIN｜多功能系统",
+    "Auto Farm: OFF": "自动刷取：关闭",
+    "Auto Farm: ON": "自动刷取：开启",
+    "Auto Parry: OFF": "自动招架：关闭",
+    "Auto Parry: ON": "自动招架：开启",
+    "Combat Automation: OFF": "自动战斗：关闭",
+    "Combat Automation: ON": "自动战斗：开启",
+    "ESP: OFF": "透视：关闭",
+    "ESP: ON": "透视：开启"
+  }
+}
