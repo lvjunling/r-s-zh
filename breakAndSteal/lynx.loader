@@ -1,0 +1,115 @@
+-- 简体中文界面翻译加载器
+-- BEGIN GENERATED CONFIG
+local SCRIPT_URL = [[https://raw.githubusercontent.com/4LynxX/Lynx/refs/heads/main/LynxxMain.lua]]
+local EMBEDDED_JSON = [[{"version":1,"script_url":"https://raw.githubusercontent.com/4LynxX/Lynx/refs/heads/main/LynxxMain.lua","translations":{"0 = any size, e.g. 2.5":"0 表示不限大小，例如 2.5","0 = any weight":"0 表示不限重量","0 = any weight, e.g. 50":"0 表示不限重量，例如 50","0 = any weight, e.g. 5000 or 1.2M":"0 表示不限重量，例如 5000 或 1.2M","0 = any, e.g. 150M or 13.2B":"0 表示不限，例如 150M 或 13.2B","0 = fit the whole area, e.g. 250":"0 表示覆盖整个区域，例如 250","0 = off, e.g. 1T or 500B":"0 表示关闭，例如 1T 或 500B","0 = spend all":"0 表示全部花费","1 Egg (1000 Diamonds)":"1 个蛋（1000 钻石）","2x Swing Pickaxe (Risk)":"双倍挥镐（有风险）","Abyssal":"深渊","Animal Rarities (empty = all)":"动物稀有度（留空表示全部）","Animals Panel":"动物面板","Anti AFK":"防挂机断线","Anti Ragdoll & Knockback":"防布娃娃倒地与击退","Auto Buy & Equip Best Fence":"自动购买并装备最佳围栏","Auto Buy Better Gear":"自动购买更好的装备","Auto Buy Mounted Egg":"自动购买骑乘蛋","Auto Claim Free Potions":"自动领取免费药水","Auto Claim Index":"自动领取图鉴奖励","Auto Claim Offline Cash":"自动领取离线现金","Auto Collect Diamonds (Bring All)":"自动收集钻石（聚集全部）","Auto Complete Index":"自动补全图鉴","Auto Complete Index Info":"自动补全图鉴说明","Auto Complete Tutorial":"自动完成教程","Auto Execute":"自动执行","Auto Farm Eggs":"自动刷蛋","Auto Fuse Animals":"自动融合动物","Auto Hatch Eggs":"自动孵蛋","Auto Merge Animals":"自动合并动物","Auto Merge Equipped Animals":"自动合并已装备动物","Auto Place Eggs":"自动放置鸡蛋","Auto Reconnect":"自动重连","Auto Reconnect & Execute":"自动重连与执行","Auto Reconnect Info":"自动重连说明","Auto Reconnect rejoins by itself when you get kicked or lose connection. Auto Execute loads Lynx again after every teleport (reconnect, rejoin, server hop), so your features keep running.":"“自动重连”会在被踢出或断线时重新加入；“自动执行”会在每次传送（重连、重新加入或换服）后再次加载 Lynx，让功能继续运行。","Auto Save":"自动保存","Auto Save Config":"自动保存配置","Auto Sell Eggs":"自动出售鸡蛋","Auto Sell Pets":"自动出售宠物","Auto Steal Fuse Animals":"自动偷取融合动物","Auto Steal Mutation":"自动偷取变异动物","Auto Treadmill":"自动跑步机","Auto Treadmill When Idle":"空闲时自动使用跑步机","Auto Upgrade Plot":"自动升级地块","Auto Upgrade Treadmill":"自动升级跑步机","Auto Use Best Animals":"自动使用最佳动物","Auto Use Best Gear":"自动使用最佳装备","Automation":"自动化","Barnacle Egg":"藤壶蛋","Bat Aura":"球棒攻击光环","Best Animals":"最佳动物","Best Luck":"最高幸运","Biggest Size":"最大体型","Break Area (empty = all)":"破坏区域（留空表示全部）","Break Events (empty = all)":"破坏活动（留空表示全部）","Break When Event Started":"活动开始时破坏","Break and Steal an Egg":"打破并偷取鸡蛋","Buy Fence":"购买围栏","Buy Pickaxe":"购买镐子","Buy Trails":"购买拖尾","Cactus Pickaxe - $6M":"仙人掌镐 - $6M","Caesar Egg":"凯撒蛋","Captain Egg":"船长蛋","Claim & Index":"领取与图鉴","Claims the shop's free 5-minute boost (x2 Cash, x2 Pickaxe Swing, x2 Egg Grow Speed in turn, 3 a day) by itself whenever one is left. Roblox plays a short ad for each one (about 15-20 s) and only gives the potion once it has finished.":"有剩余次数时，自动领取商店的免费 5 分钟增益（依次为双倍现金、双倍挥镐、双倍鸡蛋成长速度，每天 3 次）。每次 Roblox 会播放约 15–20 秒的短广告，播放结束后才发放药水。","Collect Diamonds":"收集钻石","Colosseum Egg":"竞技场蛋","Config":"配置","Config Management":"配置管理","Delete Config File":"删除配置文件","Diamond Count":"钻石统计","Diamond Pickaxe - $160K":"钻石镐 - $160K","Diamond Shop":"钻石商店","Diamond Shop Status":"钻石商店状态","Diamonds: 379\nThis session: +0 (0 / min)":"钻石：379\n本次运行：+0（每分钟 0）","Disable 3D Rendering":"关闭 3D 渲染","Disable Egg Effects":"关闭鸡蛋特效","Discord User ID (Event)":"Discord 用户 ID（活动）","Discord User ID (Stats)":"Discord 用户 ID（统计）","Discord User ID (Steal Animal)":"Discord 用户 ID（偷取动物）","Don't use this feature if your ping or CPU is lagging.":"网络延迟高或 CPU 卡顿时，请勿使用此功能。","Drone Camera":"无人机视角","Drone Camera Info":"无人机视角说明","Drone Height (studs)":"无人机高度（格）","ESP":"透视标记","ESP Animal Names (empty = all)":"透视动物名称（留空表示全部）","ESP Animals":"动物透视","ESP Event Eggs":"活动蛋透视","ESP Min Weight (kg)":"透视最低重量（千克）","ESP Players":"玩家透视","ESP Rarities (empty = all)":"透视稀有度（留空表示全部）","Egg Priority":"鸡蛋优先级","Egg Types (empty = all)":"鸡蛋类型（留空表示全部）","Enable Event Webhook":"启用活动 Webhook 通知","Enable Stats Webhook":"启用统计 Webhook 通知","Enable Steal Animal Webhook":"启用偷取动物 Webhook 通知","Enchant Feature":"附魔功能","Equip Fence":"装备围栏","Equip Now":"立即装备","Equip Pickaxe":"装备镐子","Equip Trails":"装备拖尾","Ethereal":"空灵","Event":"活动","Event Webhook":"活动 Webhook","Export Config":"导出配置","External Config JSON":"外部配置 JSON","FPS Booster":"帧率优化","FPS Cap":"帧率上限","Fairy Castle":"精灵城堡","Fantasy Expansion":"幻想扩展","Farm Mode":"刷取模式","Fastest Break":"最快破坏","Fence":"围栏","Free Potion Status":"免费药水状态","Free Potions":"免费药水","Free Potions Info":"免费药水说明","Fuse Animals":"融合动物","Galaxy Zone":"银河区域","Gears Selection":"装备选择","Gems Shop":"宝石商店","Godly":"神级","Golden Pickaxe - $20K":"黄金镐 - $20K","Haunted Graveyard":"闹鬼墓地","Help Friend (drop animals in Forest Zone)":"帮助好友（在森林区域放下动物）","Hide All Plots":"隐藏全部地块","Hide Other Plots":"隐藏其他地块","Hide Stats":"隐藏信息","Hide Stats (Spoof Names)":"隐藏信息（伪装名称）","Hide Stats Info":"隐藏信息说明","Instant (More Faster)":"瞬间模式（更快）","Iron Pickaxe - $800":"铁镐 - $800","Keep Diamonds":"保留钻石","Keep Mutated & Gold/Diamond":"保留变异及黄金／钻石动物","Klik lagi untuk konfirmasi!":"再次点击确认！","Kraken Egg":"海怪蛋","Label":"标签","Lightest":"最轻","Lightning Pickaxe - $40M":"闪电镐 - $40M","Load External JSON":"加载外部 JSON","Load From External":"从外部加载","Lucky Eggs First":"幸运蛋优先","Lynx":"Lynx","Main":"主要功能","Merge Animal Names (empty = all)":"合并动物名称（留空表示全部）","Merge Animals":"合并动物","Merge Rarities (empty = all)":"合并稀有度（留空表示全部）","Min Animal Size (x)":"动物最小体型（倍）","Min Cash Per Second ($/s)":"最低每秒收益（$/秒）","Min Egg Weight (kg)":"鸡蛋最低重量（千克）","Min Mutation Income ($/s)":"变异动物最低收益（$/秒）","Mount Olympus":"奥林匹斯山","Mounted Eggs Per Buy":"每次购买的骑乘蛋数量","Mutation Rarities (empty = all)":"变异稀有度（留空表示全部）","Mutations (empty = all)":"变异类型（留空表示全部）","Nearest":"最近","Needs Auto Farm on: steals the animals not in your Index yet first, past the Auto Farm filters, and breaks eggs in the zones that hatch them first, even zones not picked there (eggs under 2 minutes).":"需要开启“自动刷取”：优先偷取图鉴尚未收录的动物，不受自动刷取筛选限制；优先在能孵出这些动物的区域破蛋，即使未勾选该区域（孵化时间低于 2 分钟的蛋）。","No features found":"未找到功能","Normal":"普通","Olympus Egg":"奥林匹斯蛋","Omega":"欧米伽","Only Hit Players Carrying Animals":"仅攻击携带动物的玩家","Only Mutated & Gold/Diamond":"仅变异及黄金／钻石动物","Paste JSON config here":"在此粘贴 JSON 配置","Performance":"性能","Pick a fence to see its price.":"选择围栏以查看价格。","Pick an item to see its price.":"选择物品以查看价格。","Pickaxe Shop":"镐子商店","Pirate Cove":"海盗湾","Place & Hatch Eggs":"放置与孵化鸡蛋","Place Egg Names (empty = all)":"放置鸡蛋名称（留空表示全部）","Place Egg Rarities (empty = all)":"放置鸡蛋稀有度（留空表示全部）","Planet X Zone":"X 星球区域","Popup Blocker":"拦截弹窗","Primordial":"原初","Puts the camera high above the area you are in, looking straight down at the whole arena. It stays still while you teleport around and only moves when you farm in another area.":"将镜头升至当前区域上空，垂直俯视整个场地。区域内传送时镜头保持固定，仅切换刷取区域时移动。","Rejoin":"重新加入","Reset to Default":"恢复默认设置","Save Config Now":"立即保存配置","Search feature...":"搜索功能……","Search...":"搜索……","Select Option":"选择选项","Select Options":"选择多个选项","Select Pickaxe":"选择镐子","Selected Fence":"所选围栏","Selected Pickaxe":"所选镐子","Selected Trails":"所选拖尾","Sell Cash Below ($/s)":"出售低于此收益的动物（$/秒）","Sell Egg Names":"出售鸡蛋名称","Sell Egg Rarities":"出售鸡蛋稀有度","Sell Eggs Now":"立即出售鸡蛋","Sell Now":"立即出售","Sell Pet Names":"出售宠物名称","Sell Rarities":"出售稀有度","Server":"服务器","Server Hop":"切换服务器","Setelah melakukan Reset to Default, beberapa settingan seperti Toggle dan nilai Input akan langsung ter-update di UI.\n\nNamun untuk settingan yang mempengaruhi karakter, kecepatan, atau fitur aktif lainnya — kamu perlu Rejoin / Respawn agar perubahan berlaku sepenuhnya.\n\nFile config disimpan otomatis setiap 2 detik jika Auto Save aktif. Pastikan Auto Save ON sebelum keluar game agar settinganmu tidak hilang.\n\nSetiap game punya file config sendiri. Game ini: LynxGUI_Configs/config_10765288803.json":"点击“恢复默认设置”后，部分开关和输入值会立即在界面中更新。\n\n但涉及角色、速度或其他运行中功能的设置，需要重新加入游戏或重生后才会完全生效。\n\n开启自动保存后，配置文件每 2 秒保存一次。离开游戏前请确保自动保存已开启，以免丢失设置。\n\n每个游戏有独立配置文件。本游戏：LynxGUI_Configs/config_10765288803.json","Settings":"设置","Shop":"商店","Shop Pickaxe":"镐子商店","Shop Trails":"拖尾商店","Show Animals Panel":"显示动物面板","Show Enchant Panel":"显示附魔面板","Show Mastery Panel":"显示精通面板","Show Players Panel":"显示玩家面板","Show Real Ping Panel":"显示实际延迟面板","Show Weather Panel":"显示天气面板","Slot 1 Animal":"槽位 1 动物","Slot 1 Min Weight (kg)":"槽位 1 最低重量（千克）","Slot 2 Animal":"槽位 2 动物","Slot 2 Min Weight (kg)":"槽位 2 最低重量（千克）","Slot 3 Animal":"槽位 3 动物","Slot 3 Min Weight (kg)":"槽位 3 最低重量（千克）","Spectral":"幽灵","Stats Interval (minutes)":"统计间隔（分钟）","Stats Webhook":"统计 Webhook","Status: Off":"状态：关闭","Status: Off\nLeft today: 3 / 3\nNext: x2 Cash\nRefills in: 16h 47m":"状态：关闭\n今日剩余：3 / 3\n下一项：双倍现金\n补充倒计时：16 小时 47 分钟","Steal Animal Webhook":"偷取动物 Webhook","Steal Animals (empty = all)":"偷取动物（留空表示全部）","Steal From Players (Instant Mode Only)":"从玩家处偷取（仅瞬间模式）","Steal Min Cash Per Second ($/s)":"偷取最低每秒收益（$/秒）","Steal Min Weight (kg)":"偷取最低重量（千克）","Steal Only":"仅偷取","Steal Rarities (empty = all)":"偷取稀有度（留空表示全部）","Stone Pickaxe - $80":"石镐 - $80","Strawberry Pickaxe - $1.2M":"草莓镐 - $1.2M","Support Features":"辅助功能","Swaps every player's username and display name on your screen only: the Roblox player list, the Esc menu, chat, name tags, the game's UI and this one. You show as the name below, everyone else as Player 1, Player 2... The server and other players still see the real names.":"仅在你的屏幕上替换所有玩家的用户名和显示名称，涵盖 Roblox 玩家列表、Esc 菜单、聊天、头顶名称、游戏界面及本界面。你显示为下方设定名称，其他人为“玩家 1”“玩家 2”等；服务器和其他玩家仍看到真实名称。","Target Players (empty = all)":"目标玩家（留空表示全部）","Test Event Webhook":"测试活动 Webhook","Test Stats Webhook":"测试统计 Webhook","Test Steal Animal Webhook":"测试偷取动物 Webhook","Thunderstone Egg":"雷石蛋","Titanic Egg Spawned":"巨型蛋已出现","Titanic Eggs First":"巨型蛋优先","Trails Shop":"拖尾商店","Treasure Egg":"宝藏蛋","Tutorial":"教程","Tutorial Status":"教程状态","Unlock FPS":"解锁帧率上限","Upgrades & Gear":"升级与装备","Void":"虚空","Warning":"警告","Webhook":"Webhook 通知","Webhook Animal Names (empty = all)":"通知动物名称（留空表示全部）","Webhook Rarities (empty = all)":"通知稀有度（留空表示全部）","Webhook URL (Event)":"Webhook 地址（活动）","Webhook URL (Stats)":"Webhook 地址（统计）","Webhook URL (Steal Animal)":"Webhook 地址（偷取动物）","Wooden Pickaxe - $0":"木镐 - $0","Your Fake Name":"你的伪装名称","Zones (empty = all)":"区域（留空表示全部）","discord.gg/lynxx":"discord.gg/lynxx","e.g. Lynx":"例如：Lynx","https://discord.com/api/webhooks/...":"https://discord.com/api/webhooks/...","optional, for mentions":"选填，用于提及用户","×":"×","▲":"▲","▼":"▼","⚠️ Perhatian":"⚠️ 注意"}}]]
+-- END GENERATED CONFIG
+
+local HttpService = game:GetService("HttpService")
+local translations = HttpService:JSONDecode(EMBEDDED_JSON).translations
+local hooked = setmetatable({}, { __mode = "k" })
+
+local function hook(obj)
+    if hooked[obj] then return end
+    local property
+    if obj:IsA("TextLabel") or obj:IsA("TextButton") then
+        property = "Text"
+    elseif obj:IsA("TextBox") then
+        -- 保留用户输入，只翻译输入框占位提示。
+        property = "PlaceholderText"
+    else
+        return
+    end
+    hooked[obj] = true
+    local applying = false
+    local function apply()
+        if applying then return end
+        local text = obj[property]
+        local translated = translations[text]
+        if type(translated) == "string" and translated ~= "" and translated ~= text then
+            applying = true
+            obj[property] = translated
+            applying = false
+        end
+    end
+    apply()
+    obj:GetPropertyChangedSignal(property):Connect(apply)
+end
+
+local playerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+local roots = { playerGui }
+local ok, coreGui = pcall(function() return game:GetService("CoreGui") end)
+if ok then roots[#roots + 1] = coreGui end
+if type(gethui) == "function" then
+    local success, hidden = pcall(gethui)
+    if success and hidden then roots[#roots + 1] = hidden end
+end
+local seen = {}
+for _, root in ipairs(roots) do
+    if not seen[root] then
+        seen[root] = true
+        pcall(function()
+            root.DescendantAdded:Connect(function(obj) task.defer(hook, obj) end)
+        end)
+    end
+end
+
+local drawingTexts = setmetatable({}, { __mode = "k" })
+if type(Drawing) == "table" and type(Drawing.new) == "function" then
+    local library = Drawing
+    local original = library.new
+    local function wrapped(kind, ...)
+        local obj = original(kind, ...)
+        if kind == "Text" then drawingTexts[obj] = true end
+        return obj
+    end
+    local installed = pcall(function() library.new = wrapped end) and library.new == wrapped
+    if not installed then
+        local proxy = setmetatable({ new = wrapped }, { __index = library })
+        pcall(function() Drawing = proxy end)
+    end
+end
+
+task.spawn(function()
+    while true do
+        for obj in pairs(drawingTexts) do
+            local success, text = pcall(function() return obj.Text end)
+            if not success and type(getrenderproperty) == "function" then
+                success, text = pcall(getrenderproperty, obj, "Text")
+            end
+            local translated = success and translations[text]
+            if type(translated) == "string" and translated ~= "" and translated ~= text then
+                local applied = pcall(function() obj.Text = translated end)
+                if not applied and type(setrenderproperty) == "function" then
+                    pcall(setrenderproperty, obj, "Text", translated)
+                end
+            end
+        end
+        task.wait(0.1)
+    end
+end)
+
+local function fetch(url)
+    assert(type(url) == "string" and url:match("^https://"), "请配置 HTTPS 脚本地址")
+    local success, source = pcall(function() return game:HttpGet(url) end)
+    if success and type(source) == "string" and #source > 0 then return source end
+    local requestFn = request or http_request or (syn and syn.request)
+    if type(requestFn) == "function" then
+        local fetched, response = pcall(requestFn, { Url = url, Method = "GET" })
+        if fetched and type(response) == "table" then
+            local code = tonumber(response.StatusCode or response.Status)
+            if code and code >= 200 and code < 300 and type(response.Body) == "string" and #response.Body > 0 then
+                return response.Body
+            end
+        end
+    end
+    error("下载失败，请检查 URL、网络与执行器的 HTTP 支持")
+end
+
+local success, err = pcall(function()
+    local source = fetch(SCRIPT_URL)
+    assert(type(loadstring) == "function", "执行器缺少 loadstring")
+    local fn, compileError = loadstring(source)
+    assert(fn, compileError)
+    fn()
+end)
+if not success then warn("[界面汉化] " .. tostring(err)) end
