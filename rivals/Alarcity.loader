@@ -1,0 +1,115 @@
+-- 简体中文界面翻译加载器
+-- BEGIN GENERATED CONFIG
+local SCRIPT_URL = [[https://alacrity.rip/loader.lua]]
+local EMBEDDED_JSON = [[{"version":1,"script_url":"https://alacrity.rip/loader.lua","translations":{"--":"--","1v1":"1v1","2D":"2D","2v2":"2v2","3v3":"3v3","4v4":"4v4","5v5":"5v5","Accent color":"强调色","Afternoon":"下午","Agree":"同意","Alacrity.rip ・ discord.gg/3PwAy6Zy2D":"Alacrity.rip ・ discord.gg/3PwAy6Zy2D","Alignment X":"水平对齐","Alignment Y":"垂直对齐","Always":"始终","Among Us":"Among Us","Arcade":"街机","Arial":"Arial","ArialBold":"ArialBold","Assault Rifle":"突击步枪","BBot":"BBot","Background color":"背景颜色","Baimware":"Baimware","Bambi":"Bambi","Bamboo":"竹林","Bat":"球棒","Battle Axe":"战斧","Beam":"光束","Beep":"哔声","Big":"大","Blue Space":"蓝色太空","Bodoni":"Bodoni","Bonk":"敲击声","Bottom":"底部","Bow":"弓","Bruh":"Bruh 音效","Bubble":"气泡","Burst Rifle":"连发步枪","CSGO":"CSGO","Call of Duty":"使命召唤","Cartoon":"卡通","Center":"中心","Chain":"锁链","Chainsaw":"电锯","Classic Roblox":"经典 Roblox","Click":"点击声","Cloudy":"多云","Code":"代码","Color":"颜色","Color picker":"颜色选择器","Computer":"电脑","Config list":"配置列表","Config name":"配置名称","Configuration":"配置","Console":"主机","Coo Coo":"咕咕声","Copy HEX":"复制十六进制颜色","Copy RGB":"复制 RGB 颜色","Copy color":"复制颜色","Corner":"角框","Cream Cheese Honey":"奶油奶酪蜂蜜","Create config":"创建配置","Create theme":"创建主题","Criss Cross":"交叉","Crossbow":"弩","Crowbar":"撬棍","Current autoload config: none":"当前自动加载配置：无","Custom position":"自定义位置","Custom theme name":"自定义主题名称","Custom themes":"自定义主题","Daggers":"匕首","Dark Skies":"暗色天空","Dawn":"黎明","Default":"默认","Delete Theme":"删除主题","Delete config":"删除配置","Denial":"否定","Ding":"叮声","Distortion":"扭曲","Dusk":"黄昏","E":"E","Earth":"地球","Energy Pistols":"能量手枪","Energy Rifle":"能量步枪","Ethereal":"空灵","Exogun":"外骨骼枪","Facepalm":"捂脸","Fantasy":"幻想","Fart":"放屁声","Fatality":"Fatality","Fists":"拳头","Flamethrower":"喷火器","Flare Gun":"信号枪","Flashbang":"闪光弹","Freeze Ray":"冰冻射线枪","Galaxy":"银河","Gamesense":"Gamesense","Garamond":"Garamond","Glitch":"故障","Gotham":"Gotham","GothamBlack":"GothamBlack","GothamBold":"GothamBold","Grappler":"抓钩","Grenade":"手雷","Grenade Launcher":"榴弹发射器","Gunblade":"枪刃","Handgun":"手枪","Heartrate":"心跳","Heaven":"天堂","Hex color":"十六进制颜色","Highway":"公路","Hold":"按住","Horizontal Milky Way":"横向银河","IndieFlower":"IndieFlower","Jester":"Jester","Jump Pad":"弹跳板","Jungle":"丛林","Jura":"Jura","Kalam":"Kalam","Katana":"武士刀","Keybind Menu":"快捷键面板","Keybind Menu Transparency":"快捷键面板透明度","Keybinds":"快捷键","Kneel":"跪下","Knife":"小刀","Label":"标签","Laser":"激光","Lazer":"镭射","Left":"左侧","Lightning":"闪电","Line":"线条","Load config":"加载配置","Load theme":"加载主题","LuckiestGuy":"LuckiestGuy","Main color":"主色","Mario":"Mario","Maul":"大锤","Medkit":"医疗包","Menu":"菜单","Menu bind":"菜单快捷键","Merriweather":"Merriweather","Michroma":"Michroma","Minecraft":"Minecraft","Minecraft Bow":"Minecraft 弓","Minecraft Bow Hit":"Minecraft 弓命中","Minecraft Hit":"Minecraft 命中","Minecraft XP":"Minecraft 经验音效","Minigun":"转轮机枪","Mint":"薄荷","Mobile":"手机","Molotov":"燃烧瓶","Mountains":"山脉","Nebula":"星云","Neon":"霓虹","Neverlose":"Neverlose","Night":"夜晚","Night Light":"夜光","None":"无","Notification":"通知","Notification Transparency":"通知透明度","Notification bar side":"通知条位置","Nunito":"Nunito","Ocean Sky":"海洋天空","Off of You":"Off of You","Old Fatality":"旧版 Fatality","One":"一","Osu":"Osu","Oswald":"Oswald","Outline color":"描边颜色","Overwrite Theme":"覆盖主题","Overwrite config":"覆盖配置","Paintball Gun":"彩弹枪","Paste color":"粘贴颜色","PatrickHand":"PatrickHand","Permafrost":"永冻","PermanentMarker":"PermanentMarker","Pick":"选择","Pink Clouds":"粉色云朵","Plasma":"等离子","Pop":"啵声","Primordial":"原初","Quartz":"石英","RGB color":"RGB 颜色","RIFK7":"RIFK7","ROFL":"捧腹大笑","RPG":"火箭筒","Red Dusk":"红色黄昏","Redshift":"红移","Refresh":"刷新","Refresh list":"刷新列表","Remove autoload":"取消自动加载","Reset Default":"重置默认值","Revolver":"左轮手枪","Right":"右侧","RightShift":"右 Shift","Riot Shield":"防暴盾","Roboto":"Roboto","RobotoCondensed":"RobotoCondensed","RobotoMono":"RobotoMono","Round & Round":"转圈","Rust":"Rust","Rust HS":"Rust 爆头音效","SFOTH":"SFOTH","Saber":"军刀","Sans":"Sans","Sarpanch":"Sarpanch","Satchel":"炸药包","Saturn":"土星","SciFi":"科幻","Scythe":"镰刀","Set Default":"设为默认","Set autoload":"设为自动加载","Shivering":"发抖","Shorty":"短管霰弹枪","Shotgun":"霰弹枪","Shoulder Brush":"拍肩","Side To Side":"左右摇摆","Skeet":"Skeet","Slime":"黏液","Slingshot":"弹弓","Smile":"微笑","Smoke":"烟雾","Smoke Grenade":"烟雾弹","Sniper":"狙击枪","Snow":"雪","Snow Angels":"雪天使","Soft Bell":"柔和铃声","Solid Black":"纯黑","SourceSans":"SourceSans","SourceSansBold":"SourceSansBold","Space":"太空","Spear":"长矛","SpecialElite":"SpecialElite","Spray":"喷雾","Star":"星星","Steve":"Steve","Stone":"石头","Storm":"风暴","Subspace Tripmine":"亚空间地雷","Sunset":"日落","Superhero":"超级英雄","Swirl":"旋涡","TF2":"TF2","TF2 Critical":"TF2 暴击","Take The L":"嘲讽失败","Text color":"文字颜色","Theme list":"主题列表","Themes":"主题","Think":"思考","Toggle":"切换","Tokyo Night":"东京之夜","Top":"顶部","Trowel":"泥瓦刀","UE":"UE","Ubuntu":"Ubuntu","Undertale slash":"Undertale 斩击","Underworld":"冥界","UwU":"UwU","Uzi":"乌兹冲锋枪","VR":"虚拟现实","Vegetable":"蔬菜","Vertical Milky Way":"纵向银河","Vine":"藤蔓","War Horn":"战争号角","Warpstone":"传送石","Weeb":"动漫迷","White":"白色","Wildcat":"野猫","Windows Error":"Windows 错误音效","X":"X","Y":"Y","[...] aimbot (Toggle)":"[...] 自动瞄准（切换）","[...] air slide (Toggle)":"[...] 空中滑铲（切换）","[...] animation (Toggle)":"[...] 动画（切换）","[...] anti aim (Toggle)":"[...] 反瞄准（切换）","[...] esp (Toggle)":"[...] 透视标记（切换）","[...] fly (Toggle)":"[...] 飞行（切换）","[...] infinite jump (Toggle)":"[...] 无限跳跃（切换）","[...] noclip (Toggle)":"[...] 穿墙（切换）","[...] ragebot (Toggle)":"[...] 激进瞄准（切换）","[...] show cosmetic changer (Toggle)":"[...] 显示外观修改器（切换）","[...] silent aim (Toggle)":"[...] 静默瞄准（切换）","[...] slide boost (Toggle)":"[...] 滑铲加速（切换）","[...] spin bot (Toggle)":"[...] 自动旋转（切换）","[...] third person (Toggle)":"[...] 第三人称（切换）","[...] trigger bot (Toggle)":"[...] 扳机辅助（切换）","[...] underground (Toggle)":"[...] 地下（切换）","[...] velocity (Toggle)":"[...] 物理速度（切换）","[🛡️] 竞争对手":"[🛡️] 竞争对手","adjust fog density / visibility multiplier (0 = transparent, 1 = thick)":"调整雾密度／可见度倍率（0 为透明，1 为浓雾）","aim part":"瞄准部位","aimbot":"自动瞄准","aiming animation":"瞄准动画","aiming part":"瞄准部位","aims instantly":"瞬间瞄准","air slide":"空中滑铲","angle":"角度","animation":"动画","animations":"动画","anti aim":"反瞄准","anti katana":"规避武士刀格挡","apply spoofed avatar":"应用伪装外观","apply spoofed display name":"应用伪装显示名称","arcade servers":"街机服务器","arial":"arial","arialbold":"arialbold","atmosphere":"大气","attack mode":"攻击模式","attack position":"攻击位置","attack time: 1s":"攻击时间：1 秒","auto ban":"自动封禁","auto grab drops":"自动拾取掉落物","auto grabs drops in some gamemodes":"在部分游戏模式中自动拾取掉落物","auto load":"自动加载","auto loadout":"自动配置武器","auto queue":"自动匹配","auto respawn":"自动重生","auto respawns in some gamemodes":"在部分游戏模式中自动重生","auto shoot":"自动射击","auto-equip the selected weapon slot":"自动装备所选武器槽位","automatic weapon":"武器自动连发","avatar spoof":"外观伪装","barrel":"枪管","behind":"后方","blacklist":"黑名单","bloom":"泛光","bobbing":"起伏","bounce":"弹跳","bow":"弓","box":"方框","box type":"方框类型","brightness":"亮度","bullet tracers":"弹道追踪线","cham":"模型着色","cham color":"模型着色颜色","chams":"模型着色","changes the hit sound dynamically":"动态更换命中音效","character":"角色","charms":"挂饰","checks enemies through wall":"检测墙后的敌人","choose the method to aim for the silent aim":"选择静默瞄准方式","choose the part to aim for the silent aim":"选择静默瞄准部位","code":"代码","color":"颜色","color 1":"颜色 1","color 2":"颜色 2","colorcorrection":"色彩校正","contrast":"对比度","crosshair":"准星","custom":"自定义","custom angle":"自定义角度","custom attack offset":"自定义攻击偏移","custom front":"自定义前后偏移","custom radius":"自定义半径","custom side":"自定义侧向偏移","custom vertical":"自定义垂直偏移","daggers":"匕首","damage number color":"伤害数字颜色","dances":"舞蹈","dead zone: 5":"死区：5","deadzone of the aimbot":"自动瞄准死区","default":"默认","density":"密度","device spoof":"设备伪装","devices":"设备","disable":"关闭","disable arms":"隐藏手臂","disable damage numbers":"隐藏伤害数字","disable game crosshair":"隐藏游戏准星","disable hit marker":"隐藏命中标记","disable viewmodel animations":"关闭第一人称模型动画","distance":"距离","dof":"景深","duration":"持续时间","dynamicexposure":"动态曝光","easein":"渐入","easeout":"渐出","emotes":"表情动作","enable":"启用","enable atmosphere of the shader":"启用着色效果的大气","enable bloom of the shader":"启用着色效果的泛光","enable colorcorrection of the shader":"启用着色效果的色彩校正","enable custom color":"启用自定义颜色","enable custom recoil modifier (fixed to 0)":"启用自定义后坐力修正（固定为 0）","enable custom shoot cooldown modifier (fixed to 0)":"启用自定义射击冷却修正（固定为 0）","enable custom spread modifier (fixed to 0)":"启用自定义散布修正（固定为 0）","enable custom weather":"启用自定义天气","enable dof of the shader":"启用着色效果的景深","enable dynamicexposure of the shader":"启用着色效果的动态曝光","enable fly":"启用飞行","enable for esp players":"启用玩家透视","enable for highlight throwing objects":"启用投掷物高亮","enable for showing the bow":"显示弓","enable for showing the daggers":"显示匕首","enable for showing the flare gun":"显示信号枪","enable for showing the flashbang":"显示闪光弹","enable for showing the freeze ray":"显示冰冻射线枪","enable for showing the grenade":"显示手雷","enable for showing the grenade launcher":"显示榴弹发射器","enable for showing the molotov":"显示燃烧瓶","enable for showing the paintball gun":"显示彩弹枪","enable for showing the rpg":"显示火箭筒","enable for showing the satchel":"显示炸药包","enable for showing the slingshot":"显示弹弓","enable for showing the smoke grenade":"显示烟雾弹","enable for showing the text of throwing objects":"显示投掷物文字标记","enable for showing the warpstone":"显示传送石","enable infinite jump for all weapons":"为全部武器启用无限跳跃","enable no clip":"启用穿墙","enable or disable device spoofing":"开启或关闭设备伪装","enable or disable the independent fog system":"开启或关闭独立雾效系统","enable or disable the third person":"开启或关闭第三人称","enable player ignore list":"启用玩家忽略名单","enable silent aim":"启用静默瞄准","enable silent aim auto shoot":"启用静默瞄准自动射击","enable slide boost":"启用滑铲加速","enable specularboost of the shader":"启用着色效果的镜面增强","enable speed":"启用加速","enable spin":"启用旋转","enable sunrays of the shader":"启用着色效果的阳光光束","enable x-ray":"启用透视视图","enabled":"已启用","enables aimbot":"启用自动瞄准","enables sticky aim":"启用持续锁定","enables trigger bot":"启用扳机辅助","end":"结束","enemies only":"仅敌人","enter level":"输入等级","enter name":"输入名称","enter wins":"输入胜场数","equip animation":"装备动画","esp":"透视标记","extras":"附加功能","fill":"填充","fill color":"填充颜色","fill color 1":"填充颜色 1","fill color 2":"填充颜色 2","fill color 3":"填充颜色 3","fill transparency":"填充透明度","fill transparency 1: 0.6":"填充透明度 1：0.6","fill transparency 2: 0.6":"填充透明度 2：0.6","fill transparency 3: 0.6":"填充透明度 3：0.6","filter color":"滤色","flags":"标识","flare gun":"信号枪","flashbang":"闪光弹","fly":"飞行","fog":"雾","fog color":"雾颜色","follow":"跟随","follow mode":"跟随模式","font":"字体","force weapon":"强制装备武器","fov":"瞄准范围","fps":"帧率","freeze ray":"冰冻射线枪","gap":"间隙","get out":"退出","glow":"发光","glow: 0.8":"发光：0.8","gotham":"gotham","gothambold":"gothambold","gothammedium":"gothammedium","grenade":"手雷","grenade launcher":"榴弹发射器","head":"头部","health bar":"血条","heavy rain":"暴雨","hi":"你好","hide teammates from all ESP elements":"在全部透视元素中隐藏队友","hide time: 1s":"隐藏时间：1 秒","high color":"高值颜色","hit effects":"命中特效","hit sounds":"命中音效","how long hit notifications stay visible":"命中通知显示时长","how long the bullet tracers stay visible":"弹道追踪线显示时长","humanoidrootpart":"角色根部","id":"ID","idle animation":"待机动画","ignore protected":"忽略受保护目标","indicators":"指示器","infinite double jumps":"无限二段跳","infinite jump":"无限跳跃","instant aim":"瞬间瞄准","intensity of the custom weather":"自定义天气强度","jitter":"抖动","jump animation":"跳跃动画","leftlowerarm":"左前臂","leftlowerleg":"左小腿","leftupperarm":"左上臂","leftupperleg":"左大腿","length":"长度","level":"等级","level for all players":"全部玩家的等级","level spoof":"等级伪装","levels":"等级","levels you want to spoof":"要伪装的等级","lifetime":"存留时间","linear":"线性","local":"本地","loop selected animation":"循环播放所选动画","low color":"低值颜色","lowertorso":"下躯干","main":"主要功能","max angle: 60°":"最大角度：60°","max speed: 20":"最大速度：20","melee":"近战","method":"方式","mid color":"中间值颜色","min angle: 30°":"最小角度：30°","min speed: 10":"最小速度：10","misc":"其他","mod detector":"管理员检测","mode":"模式","molotov":"燃烧瓶","monitor color":"监视器颜色","movement":"移动","muzzle flash":"枪口火光","name":"名称","name for all players":"全部玩家的名称","name spoof":"名称伪装","night":"夜晚","no cooldown":"无冷却","no cooldown on dash":"冲刺无冷却","no dash cooldown":"冲刺无冷却","no melee cooldown":"近战无冷却","no recoil":"无后坐力","no spread":"无散布","noclip":"穿墙","none":"无","notify hit":"命中通知","offset":"偏移","oof":"Oof 音效","other":"其他","outline":"描边","outline color":"描边颜色","outline color 1":"描边颜色 1","outline color 2":"描边颜色 2","outline color 3":"描边颜色 3","outline thickness: 1.5":"描边粗细：1.5","outline transparency":"描边透明度","outline transparency 1: 0.4":"描边透明度 1：0.4","outline transparency 2: 0.4":"描边透明度 2：0.4","outline transparency 3: 0.4":"描边透明度 3：0.4","override fps":"覆盖帧率设置","override fps cap":"覆盖帧率上限","paintball gun":"彩弹枪","pan":"平移","particle light emission":"粒子发光","particle size multiplier":"粒子大小倍率","particle speed multiplier":"粒子速度倍率","particle spread multiplier":"粒子扩散倍率","pitch":"俯仰角","players":"玩家","players to ignore in all targeting":"所有目标选择中忽略的玩家","position":"位置","prediction":"预判","prediction of the aimbot":"自动瞄准预判","premium":"高级版","primary":"主武器","protected list":"保护名单","quack":"鸭叫声","radius of the fov":"瞄准范围半径","rage bot":"激进瞄准","rain":"雨","random":"随机","random angle":"随机角度","reload animation":"换弹动画","removes shoot/reload input spam cooldown (semi-auto becomes auto)":"移除连续射击／换弹输入冷却（半自动转为自动）","reset all":"全部重置","rightlowerarm":"右前臂","rightlowerleg":"右小腿","rightupperarm":"右上臂","rightupperleg":"右大腿","rise":"上升","rotate the gradient":"旋转渐变","rotating":"旋转中","rotation":"旋转","rotation speed: 1x":"旋转速度：1 倍","rotation: 0°":"旋转：0°","rpg":"火箭筒","satchel":"炸药包","saturation":"饱和度","secondary":"副武器","select which body parts to not shoot at":"选择不射击的身体部位","sensitivity of the aimbot":"自动瞄准灵敏度","sensitivity: 15":"灵敏度：15","sets AttackCooldown to 0 for melee weapons":"将近战武器 AttackCooldown 设为 0","settings":"设置","shaders":"着色效果","shoot animation":"射击动画","shoot attempts":"射击尝试次数","show a notification when you hit someone":"命中玩家时显示通知","show ammo":"显示弹药","show cosmetic changer":"显示外观修改器","show damage numbers when you hit someone":"命中玩家时显示伤害数字","show fov":"显示瞄准范围","show local player":"显示本地玩家","show or hide the fov":"显示或隐藏瞄准范围","show the filled circle":"显示填充圆","show the outline":"显示描边","silent aim":"静默瞄准","silent mode":"静默模式","size":"大小","skeleton":"骨骼","skeleton max distance":"骨骼最大显示距离","skeleton thickness":"骨骼线条粗细","skeleton transparency":"骨骼透明度","skin changer":"皮肤修改器","skins":"皮肤","skip targets that are deflecting with katana":"跳过正在使用武士刀反弹的目标","sky":"天空","skybox type":"天空盒类型","slap":"拍击声","slide animation":"滑铲动画","slide boost":"滑铲加速","slide while airborne (press ctrl in air)":"空中滑铲（在空中按 Ctrl）","slingshot":"弹弓","slot 1":"槽位 1","slot 2":"槽位 2","slot 3 ":"槽位 3 ","slot 4":"槽位 4","smoke grenade":"烟雾弹","smooth":"平滑","smoothness mode at aiming":"瞄准平滑模式","smoothness of the aimbot":"自动瞄准平滑度","smoothness: 0.5":"平滑度：0.5","snow":"雪","softcenter":"柔和居中","sounds":"音效","specularboost":"镜面增强","speed":"速度","speed of the fly":"飞行速度","speed of the slideboost":"滑铲加速速度","speed of the spin":"旋转速度","speed of the walkspeed":"行走速度","spin bot":"自动旋转","spinbot":"自动旋转","spoof all players' level":"伪装全部玩家的等级","spoof all players' name":"伪装全部玩家的名称","spoof all players' wins":"伪装全部玩家的胜场数","spoof display name":"伪装显示名称","spoof level":"伪装等级","spoof win streak":"伪装连胜数","spoof your avatar":"伪装你的外观","spoof your current player level":"伪装当前玩家等级","spoof your current win streak":"伪装当前连胜数","spread":"散布","sprint animation":"冲刺动画","start":"开始","sticky aim":"持续锁定","style":"样式","sunny":"晴天","sunrays":"阳光光束","sway":"晃动","target":"目标","targeting":"目标选择","the distance where everything becomes completely foggy":"完全被浓雾遮蔽的距离","the distance where the fog starts to appear":"开始出现雾的距离","thickness":"粗细","third person":"第三人称","tilt":"倾斜","tilt 45":"倾斜 45°","tilt 90":"倾斜 90°","toggle custom fog color overlay":"切换自定义雾色叠加","torso":"躯干","tracer":"追踪线","tracer from cursor":"从光标绘制追踪线","tracer thickness":"追踪线粗细","tracer transparency":"追踪线透明度","transparency":"透明度","transparency 1":"透明度 1","transparency 2":"透明度 2","transparency of the x-ray":"透视视图透明度","trigger bot":"扳机辅助","type of animations you want to play":"要播放的动画类型","type of custom skybox":"自定义天空盒类型","type of custom weather":"自定义天气类型","type of device you want to spoof":"要伪装的设备类型","type of sound you want to use on guns":"枪械音效类型","under":"下方","underground":"地下","unlock":"解锁","unlock charms":"解锁挂饰","unlock dances":"解锁舞蹈","unlock emotes":"解锁表情动作","unlock skins":"解锁皮肤","unlock wraps":"解锁涂装","uppertorso":"上躯干","upside down":"倒置","use display name":"使用显示名称","user id":"用户 ID","utility":"实用工具","value: 1":"数值：1","value: 100":"数值：100","value: 5":"数值：5","velocity":"物理速度","verified":"已验证","viewmodel":"第一人称武器模型","viewport offset":"视口偏移","visible only":"仅可见目标","visuals":"视觉","void spam":"反复进入虚空","volume of the hit sound":"命中音效音量","volume: 5":"音量：5","warpstone":"传送石","weapon":"武器","weather":"天气","weather color":"天气颜色","weather intensity: 500":"天气强度：500","weather type":"天气类型","win streaks":"连胜","win streaks you want to spoof":"要伪装的连胜数","wins":"胜场","wins for all players":"全部玩家的胜场数","wins spoof":"胜场伪装","world":"世界","wraps":"涂装","x":"x","x-ray":"透视视图","x: 0":"X：0","y":"y","y: 0":"Y：0","yaw":"偏航角","z: 0":"Z：0"}}]]
+-- END GENERATED CONFIG
+
+local HttpService = game:GetService("HttpService")
+local translations = HttpService:JSONDecode(EMBEDDED_JSON).translations
+local hooked = setmetatable({}, { __mode = "k" })
+
+local function hook(obj)
+    if hooked[obj] then return end
+    local property
+    if obj:IsA("TextLabel") or obj:IsA("TextButton") then
+        property = "Text"
+    elseif obj:IsA("TextBox") then
+        -- 保留用户输入，只翻译输入框占位提示。
+        property = "PlaceholderText"
+    else
+        return
+    end
+    hooked[obj] = true
+    local applying = false
+    local function apply()
+        if applying then return end
+        local text = obj[property]
+        local translated = translations[text]
+        if type(translated) == "string" and translated ~= "" and translated ~= text then
+            applying = true
+            obj[property] = translated
+            applying = false
+        end
+    end
+    apply()
+    obj:GetPropertyChangedSignal(property):Connect(apply)
+end
+
+local playerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+local roots = { playerGui }
+local ok, coreGui = pcall(function() return game:GetService("CoreGui") end)
+if ok then roots[#roots + 1] = coreGui end
+if type(gethui) == "function" then
+    local success, hidden = pcall(gethui)
+    if success and hidden then roots[#roots + 1] = hidden end
+end
+local seen = {}
+for _, root in ipairs(roots) do
+    if not seen[root] then
+        seen[root] = true
+        pcall(function()
+            root.DescendantAdded:Connect(function(obj) task.defer(hook, obj) end)
+        end)
+    end
+end
+
+local drawingTexts = setmetatable({}, { __mode = "k" })
+if type(Drawing) == "table" and type(Drawing.new) == "function" then
+    local library = Drawing
+    local original = library.new
+    local function wrapped(kind, ...)
+        local obj = original(kind, ...)
+        if kind == "Text" then drawingTexts[obj] = true end
+        return obj
+    end
+    local installed = pcall(function() library.new = wrapped end) and library.new == wrapped
+    if not installed then
+        local proxy = setmetatable({ new = wrapped }, { __index = library })
+        pcall(function() Drawing = proxy end)
+    end
+end
+
+task.spawn(function()
+    while true do
+        for obj in pairs(drawingTexts) do
+            local success, text = pcall(function() return obj.Text end)
+            if not success and type(getrenderproperty) == "function" then
+                success, text = pcall(getrenderproperty, obj, "Text")
+            end
+            local translated = success and translations[text]
+            if type(translated) == "string" and translated ~= "" and translated ~= text then
+                local applied = pcall(function() obj.Text = translated end)
+                if not applied and type(setrenderproperty) == "function" then
+                    pcall(setrenderproperty, obj, "Text", translated)
+                end
+            end
+        end
+        task.wait(0.1)
+    end
+end)
+
+local function fetch(url)
+    assert(type(url) == "string" and url:match("^https://"), "请配置 HTTPS 脚本地址")
+    local success, source = pcall(function() return game:HttpGet(url) end)
+    if success and type(source) == "string" and #source > 0 then return source end
+    local requestFn = request or http_request or (syn and syn.request)
+    if type(requestFn) == "function" then
+        local fetched, response = pcall(requestFn, { Url = url, Method = "GET" })
+        if fetched and type(response) == "table" then
+            local code = tonumber(response.StatusCode or response.Status)
+            if code and code >= 200 and code < 300 and type(response.Body) == "string" and #response.Body > 0 then
+                return response.Body
+            end
+        end
+    end
+    error("下载失败，请检查 URL、网络与执行器的 HTTP 支持")
+end
+
+local success, err = pcall(function()
+    local source = fetch(SCRIPT_URL)
+    assert(type(loadstring) == "function", "执行器缺少 loadstring")
+    local fn, compileError = loadstring(source)
+    assert(fn, compileError)
+    fn()
+end)
+if not success then warn("[界面汉化] " .. tostring(err)) end
