@@ -25,6 +25,14 @@
 
 游戏身份已通过 Roblox 官方 API 核对：`gameId=violence-district`、`universeId=6739698191`、入口 `placeId=93978595733734`。游戏链接为 <https://www.roblox.com/games/93978595733734/Violence-District>。实际对局如果进入其他 Place，记录后复核范围，不直接设为通用脚本。
 
+## Game 统一管理（待发布的新实现）
+
+游戏识别范围已从脚本配置移到 Game 表；一个 Game 可关联多份脚本。后台「游戏管理」统一填写稳定 ID、名称、Roblox 原始 URL、原始图片 URL、Universe / Place ID 和通用范围。游戏 URL 不等于脚本 URL，原始图片也不从旧脚本封面推断；暴力区原始图片尚待人工填写。
+
+后续先创建 `violence-district` 的 Game，再在脚本大厅给 ID 63 选择该游戏；ID 47 的其他版本也可选同一 Game，无需重复配置范围。`hub-config.pending.json` 只记录游戏关联及关闭 / 待验收开关，不再存一份游戏识别 ID。
+
+首次绑定或切换游戏后保存会暂停 Hub，需核对后再启用；Game 创建或关联本身不启用脚本，也不发 Key。稳定游戏 ID 沿用现有单游戏权益标识，不改已有 Key。此实现需先应用后端新增 Game 迁移并发布后台，当前不执行生产迁移，暴力区保持未启用。
+
 ## Hub 的统一处理规则
 
 | 场景 | 行为 |
@@ -48,7 +56,7 @@
 
 1. 本地验证新 Hub：原文和零参数执行、无游戏清理契约、明确失效、顶号、断网耗尽、挂起和晚到响应、关闭/销毁/恢复视图、后台续租及手动结束路径，覆盖原始源码与真实混淆构建产物。
 2. 通过 GitHub 统一发布新 Hub 版本；Key 页和旧链接兼容资源按需同步，API 地址保持不变。历史 `hub-v1.0.0` 仍是旧行为；新版本为 `hub-v1.1.0`，不提前开放脚本。旧版单例会提示重新进入游戏，而非复用旧策略。
-3. 再读大厅 ID 63 的当前详情与 revision，备份该条配置。只提交已验收的 `hubConfig`，原 `content`、原脚本地址、原发布状态保持原样；若发生并发编辑先刷新。
+3. 先在游戏管理创建或核对 Game 的原始链接、图片及识别范围，再读大厅 ID 63 的当前详情与 revision。只关联该 `gameId` 并保存待验收的 `hubConfig`，原正文、地址和大厅状态保留；绑定后复核，再按验收结论开启。并发编辑时先刷新。
 4. 字段沿用原 API：`lifecycle=managed` 表示 Hub 会话终止策略及游戏接入已验收，`enabled=true` 开放目录；不再表示原脚本接入了 `context.onCleanup`。首批只开放 ID 63，不批量处理其余记录。
 5. 临时暴力区 Key 与有效会员 Key 分别验证原脚本加载；第二设备登录、到期/吊销、断网耗尽及手动结束应显示原生断开提示，关闭或清理 UI 不应断开。测试授权结束后清理。
 6. 若异常，仅关闭该条 Hub 开关并回退客户端版本，不删除账号或会员数据，不整库回滚；每批保留逐条验收和回退记录。
@@ -78,7 +86,7 @@ Kick 表示断开当前服务器，不表示所有执行器线程或本机进程
 
 暴力区仍未启用，不发放本轮测试 Key，也不修改 ID 63 的正文或配置。**发布新版 Hub 不会自动让暴力区出现在目录中。** 完整验收开始前，再通过现有管理员 API 临时启用 ID 63 的 Hub 配置并准备专用测试 Key；临时启用会公开显示目录，应单独记录并在测试后按结论保留或关闭。
 
-保持原 `content`、原脚本地址、原状态不变，仅使用最新 revision 更新 `hubConfig`：`gameId=violence-district`、`universeIds=[6739698191]`、`placeIds=[93978595733734]`、`universal=false`，验收配置为 `enabled=true`、`lifecycle=managed`。当前本地 pending 文件继续保持关闭，不直接把它当作启用配置。管理员 Key 页面是 <https://admin.zldelf.cloud/#/hub/keys>；已具备有效会员的测试账号也可从 <https://www.zldelf.cloud/api/hub/keys> 领取会员 Key。测试 Key 不提交仓库，不放进 URL，不发送截图明文。
+先在 Game 中统一填写 `id=violence-district`、官方游戏原始 URL、真实原始图片 URL、`universeIds=[6739698191]`、`placeIds=[93978595733734]`、`universal=false`。脚本只选择所属 `gameId`，保持原正文、脚本地址与大厅状态不变，使用最新 revision 保存关闭 / 待验收配置；绑定保存后复核，再按验收结论设置 `enabled=true`、`lifecycle=managed`。当前本地 pending 文件继续保持关闭，不直接把它当作启用配置。管理员 Key 页面是 <https://admin.zldelf.cloud/#/hub/keys>；已具备有效会员的测试账号也可从 <https://www.zldelf.cloud/api/hub/keys> 领取会员 Key。测试 Key 不提交仓库，不放进 URL，不发送截图明文。
 
 ### 启用后的执行步骤
 
