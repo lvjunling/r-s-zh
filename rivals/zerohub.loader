@@ -1,0 +1,115 @@
+-- 简体中文界面翻译加载器
+-- BEGIN GENERATED CONFIG
+local SCRIPT_URL = [[https://zerohub.cc/rivals.lua]]
+local EMBEDDED_JSON = [[{"version":1,"script_url":"https://zerohub.cc/rivals.lua","translations":{".":".","0.05 = Instant lock, 0.80 = Ultra-smooth legit assist":"0.05 为瞬间锁定，0.80 为极平滑的拟人辅助","2D Box ESP":"二维方框透视","A subtle tap as you interact, on devices that support haptics.":"在支持触感反馈的设备上，交互时提供轻微振动。","Acrylic Blur":"亚克力模糊","Aerial flight velocity":"空中飞行速度","Aimbot":"自动瞄准","Aimbot Activation Key":"自动瞄准启用键","Aimbot Method":"自动瞄准方式","Aimbot Smoothness":"自动瞄准平滑度","Allows jumping repeatedly in mid-air":"允许在空中连续跳跃","Allows silent aim to target enemies behind thin cover":"允许静默瞄准薄掩体后的敌人","Always On (No Key Required)":"始终开启（无需按键）","Amethyst":"紫水晶","Amplifies vertical jump height":"提高垂直跳跃高度","Appearance":"外观","Applies the pasted JSON config string":"应用粘贴的 JSON 配置字符串","Applies the selected material & color wrap to your first-person weapon":"将所选材质和颜色涂装应用到第一人称武器模型","Apply Wrap to Equipped Weapon":"为当前武器应用涂装","Auto Bunny Hop":"自动连跳","Auto Katana Parry":"自动武士刀格挡","Auto-Apply Wrap on Swap":"切换武器时自动应用涂装","Auto-Load & Clipboard Share":"自动加载与剪贴板分享","Auto-Shoot Ragebot":"激进瞄准自动射击","Automatically deflects incoming shots when holding Katana":"持有武士刀时自动反弹来袭射击","Automatically fires when your crosshair passes over an enemy":"准星经过敌人时自动开火","Automatically hops on landing while holding Space":"按住空格时，落地后自动再次跳跃","Automatically loads the selected config when zerohub starts":"zerohub 启动时自动加载所选配置","Automatically locks and fires at visible enemies inside FOV":"自动锁定并射击瞄准范围内的可见敌人","BETA: REPORT BUGS IN DISCORD | rivals":"测试版：请在 Discord 反馈问题｜rivals","Bameware":"Bameware","Bell Ding":"铃声","Bubble Pop":"气泡破裂声","Button":"按钮","C":"C","CS:GO Headshot":"CS:GO 爆头音效","Camera":"镜头","Camera & Viewmodel":"镜头与第一人称武器模型","Camera zoom distance when Third Person is enabled":"启用第三人称后的镜头距离","Chance to prioritize Head over body parts":"优先选择头部而非其他部位的概率","Cleans up all connections, overlays, and closes the interface":"清理全部连接和叠加显示，并关闭界面","Clear Auto-Load":"清除自动加载","Client Viewmodel Wraps":"客户端武器模型涂装","Clock Time":"游戏时刻","Closest":"最近","Cobalt":"钴蓝","Config Name":"配置名称","Configs":"配置","Configuration Manager":"配置管理","Continuously keeps your active viewmodel styled with the chosen wrap":"持续为当前第一人称武器模型应用所选涂装","Copies invite link to clipboard":"将邀请链接复制到剪贴板","Copies your current settings as a shareable JSON string":"将当前设置复制为可分享的 JSON 字符串","Copy Discord":"复制 Discord 邀请","Cosmetics":"外观装饰","Counteracts vertical and horizontal weapon kickback while firing":"抵消射击时垂直和水平的武器后坐力","Crimson Gold":"绯红金","Crimson Red":"绯红","Custom Crosshair":"自定义准星","Cyber Ice":"赛博寒冰","Cycles your held weapon through an RGB spectrum":"使手持武器颜色循环变化为 RGB 彩虹色","Dashboard":"概览","Default":"默认","Delay between automatic Triggerbot shots":"扳机辅助自动射击的间隔","Delete Selected Config":"删除所选配置","Depth weapon offset":"武器深度偏移","Disables automatic config loading on startup":"关闭启动时自动加载配置","Displays a static center crosshair overlay":"在屏幕中央显示固定准星","Displays directional indicators pointing toward off-screen enemies":"显示指向屏幕外敌人的方向指示器","Displays name, health, distance, and held weapon above enemies":"在敌人上方显示名称、生命值、距离和手持武器","Draws a vertical health bar next to each 2D box":"在每个二维方框旁绘制垂直血条","Draws crisp 2D bounding boxes around players":"在玩家周围绘制清晰的二维包围方框","Draws snaplines from the bottom of your screen to enemies":"从屏幕底部向敌人绘制追踪线","Draws the targeting radius ring on your screen":"在屏幕上绘制瞄准范围圈","Dynamic Side Health Bar":"动态侧边血条","E":"E","ESP Accent Color":"透视强调色","ESP Team Check":"透视队伍检测","Electric Blue":"电光蓝","Ember":"余烬","Enable Aimbot":"启用自动瞄准","Enable Custom Hit Sound":"启用自定义命中音效","Enable Silent Aim":"启用静默瞄准","Enable Viewmodel Offset":"启用武器模型偏移","Enlarges enemy root hitboxes so shots register easily":"扩大敌人根部命中区域，使射击更容易命中","Enter config name...":"输入配置名称……","Export Config to Clipboard":"导出配置到剪贴板","FOV Radius":"瞄准范围半径","Field of View (FOV)":"镜头视野角度","Finds and joins a different public server":"查找并加入其他公共服务器","Flashes a crisp hitmarker on target impact":"命中目标时闪现清晰的命中标记","Flies smoothly in any camera direction with zero vertical drift":"沿任意镜头方向平滑飞行，不产生垂直漂移","Flight, Noclip & Spinbot":"飞行、穿墙与自动旋转","Fly (Zero-Drift CFrame)":"飞行（零漂移 CFrame）","Fly Speed":"飞行速度","Frost":"冰霜","Full-Auto Silent Aim & Ragebot":"全自动静默瞄准与激进瞄准","Fullbright":"全亮模式","Galaxy":"银河","General":"通用","Golden Yellow":"金黄","Haptics":"触感反馈","Head":"头部","Headshot Chance (%)":"爆头概率（%）","Hides ESP visuals on teammates":"隐藏队友的透视标记","Highlights enemy models through walls using stealth Adornee":"使用隐蔽 Adornee 方式穿墙高亮敌人模型","Hit Chance (%)":"命中概率（%）","Hit Feedback, Environment & Crosshair":"命中反馈、环境与准星","Hit Sound Volume":"命中音效音量","Hitbox Expander":"扩大命中区域","Hitbox Size":"命中区域大小","Hitbox Transparency":"命中区域透明度","Horizontal speed boost factor":"水平移动加速倍率","Horizontal weapon offset":"武器水平偏移","Hour of the day (0 = Midnight, 12 = Noon)":"一天中的时刻（0 为午夜，12 为中午）","HumanoidRootPart":"角色根部","Ignore Wall Check":"忽略墙体检测","Ignores teammates while still targeting everyone in 1v1 / FFA":"忽略队友；在单挑／自由混战中仍将所有其他玩家作为目标","Import Config JSON":"导入配置 JSON","Includes the enemy's equipped weapon in overhead tags":"在头顶标签中显示敌人已装备的武器","Infinite Jump":"无限跳跃","Interface Theme":"界面主题","Jump Boost":"跳跃增强","Jump Velocity":"跳跃速度","K":"K","Keep window on screen":"将窗口保持在屏幕内","Lead multiplier for moving targets":"移动目标预判倍率","Leads moving targets based on their real-time velocity":"根据目标的实时速度预判位置","LeftAlt":"左 Alt","LeftShift":"左 Shift","Load Imported JSON":"加载导入的 JSON","Load Selected Config":"加载所选配置","Loads and applies settings from the selected config":"加载并应用所选配置的设置","Lock Custom FOV":"锁定自定义视野角度","Locks map sky lighting to your preferred hour":"将地图天空光照固定为所选时刻","Locks onto enemies inside FOV with frame-independent smoothing":"以不受帧率影响的平滑方式，锁定瞄准范围内的敌人","Match & Engine Status":"对局与引擎状态","Mint Green":"薄荷绿","Mouse (mousemoverel)":"鼠标（mousemoverel）","MouseButton1 (Left Click)":"鼠标左键（MouseButton1）","MouseButton2 (Right Click)":"鼠标右键（MouseButton2）","Movement":"移动","Neon Emerald":"霓虹翡翠","Neon Purple":"霓虹紫","Neverlose":"Neverlose","No Recoil (Camera Stabilizer)":"无后坐力（镜头稳定）","No matches":"无匹配项","No results":"无结果","Noclip":"穿墙","Obsidian Chrome":"黑曜石铬色","Out-Of-FOV Indicators":"范围外方向指示器","Overhead Name, HP & Weapon Tag":"头顶名称、生命值与武器标签","Override Time of Day":"覆盖游戏时刻","Overrides default camera field of view":"覆盖默认镜头视野角度","Paste exported JSON here...":"在此粘贴导出的 JSON……","Penetrates glass/accessories and only locks visible enemies":"检测时穿过玻璃和饰品，仅锁定可见敌人","Player Box ESP (Chams)":"玩家方框透视（模型着色）","Players: 28/40  |  UniverseId: 6035872082":"玩家：28/40｜游戏宇宙 ID：6035872082","Plays custom hitmarker audio when shooting enemies":"射击命中敌人时播放自定义命中音效","Plays the selected hitmarker audio":"播放所选命中音效","Precision Aimbot":"精准自动瞄准","Prediction Factor":"预判系数","Prevents sprinting or aiming from resetting your camera FOV":"防止冲刺或瞄准重置镜头视野角度","Preview Hit Sound":"试听命中音效","Probability that a shot redirects to the target":"射击被重定向至目标的概率","Pure White":"纯白","Q":"Q","Rainbow Viewmodel":"彩虹武器模型","Rapidly rotates your character root to throw off enemy aim":"快速旋转角色根部以干扰敌方瞄准","Rayfield":"Rayfield","Redirects shots toward enemy hitboxes without deferred camera race conditions":"将射击重定向至敌人命中区域，避免延迟镜头处理的竞态问题","Refresh Match Info":"刷新对局信息","Refresh Saved Configs":"刷新已保存配置","Rejoin Server":"重新加入服务器","Rejoins the current lobby or match instance":"重新加入当前大厅或对局实例","Removes dark shadows and map fog for clear visibility":"移除暗影和地图雾效，改善可见度","Removes the selected config file from disk":"从磁盘删除所选配置文件","Rescans the config folder for newly added files":"重新扫描配置文件夹，查找新增文件","Reset Window Position":"重置窗口位置","Rose":"玫瑰","Rotation degrees per frame":"每帧旋转角度","Rust Headshot":"Rust 爆头音效","Save / Overwrite Config":"保存／覆盖配置","Saved Configs":"已保存配置","Saves all current toggles and sliders to the named or selected config":"将当前全部开关和滑块保存至指定名称或所选配置","Screen Hitmarkers":"屏幕命中标记","Script Session":"脚本会话","Search all pages":"搜索全部页面","Search...":"搜索……","Select Hit Sound":"选择命中音效","Select Weapon Wrap":"选择武器涂装","Sends anonymous counts of which parts of this window are used, so it can be made better. Never your name, what you type or your messages. sirius.menu/privacy":"发送本窗口各部分使用次数的匿名统计以改进界面，不发送姓名、输入内容或消息。sirius.menu/privacy","Server & Match Status":"服务器与对局状态","Server Hop":"切换服务器","Server Options":"服务器选项","Set Selected as Auto-Load":"将所选配置设为自动加载","Settings":"设置","Shifts your first-person weapon model XYZ position":"调整第一人称武器模型的 X、Y、Z 位置","Show Equipped Weapon":"显示已装备武器","Show FOV Circle":"显示瞄准范围圈","Shows a 'Signed in as' toast the first time you open the menu on a new account.":"新账号首次打开菜单时显示“当前登录身份”提示。","Silent & Combat":"静默瞄准与战斗","Silent Aim Target Part":"静默瞄准目标部位","Size in studs of expanded enemy hitboxes":"扩大的敌人命中区域大小，单位为格","Skeet / Gamesense":"Skeet / Gamesense","Smoothly multiplies your horizontal movement speed":"平滑地按倍率提高水平移动速度","Solar Flare":"太阳耀斑","Speed & Jump":"速度与跳跃","Speed Boost (CFrame)":"移动加速（CFrame）","Speed Multiplier":"速度倍率","Spinbot / Anti-Aim":"自动旋转／反瞄准","Spinbot Speed":"旋转速度","Stealth Player ESP Suite":"隐蔽玩家透视套件","Stops the window being dragged off the edge of the screen and lost.":"防止窗口被拖出屏幕边缘后丢失。","TF2 Critical":"TF2 暴击音效","Tap to show":"点击显示","Target Checks & Triggerbot":"目标检测与扳机辅助","Target Hitbox":"目标命中部位","Targeting field of view radius in pixels":"瞄准范围半径，单位为像素","Team Check (Smart FFA Safe)":"队伍检测（智能适配自由混战）","Third Person Distance":"第三人称距离","Third Person Mode":"第三人称模式","Toggle Keybind":"界面切换快捷键","Toggles background glass blur (can cause UI lag when enabled)":"切换背景玻璃模糊效果（开启后可能导致界面卡顿）","Tracers / Snaplines":"追踪线","Tracks targets automatically without holding the activation key":"无需按住启用键即可自动跟踪目标","Transparency of expanded hitboxes":"扩大后命中区域的透明度","Triggerbot":"扳机辅助","Triggerbot Delay (s)":"扳机辅助间隔（秒）","Unload zerohub":"卸载 zerohub","Unlock cursor while open":"菜单打开时解锁光标","Unlocks the cursor while the menu is open so you can configure in FPS games that lock it.":"菜单打开时解锁光标，便于在锁定鼠标的第一人称射击游戏中调整设置。","Unlocks third-person camera zoom distance":"解锁第三人称镜头缩放距离","Updates current FPS and player count":"更新当前帧率和玩家数量","UpperTorso":"上躯干","Usage analytics":"使用情况统计","Velocity Prediction":"速度预判","Vertical velocity applied when jumping":"跳跃时施加的垂直速度","Vertical weapon offset":"武器垂直偏移","Viewmodel Offset X":"武器模型 X 偏移","Viewmodel Offset Y":"武器模型 Y 偏移","Viewmodel Offset Z":"武器模型 Z 偏移","Visuals & ESP":"视觉与透视","Volume level for custom hitmarker sounds":"自定义命中音效的音量","Walk directly through arena walls and obstacles":"直接穿过竞技场墙壁和障碍物","Wall / Visibility Check":"墙体／可见性检测","Weapon & Melee":"武器与近战","Welcome toast":"欢迎提示","Window":"窗口","World & View":"世界与视野","default":"默认","zerohub.cc":"zerohub.cc"}}]]
+-- END GENERATED CONFIG
+
+local HttpService = game:GetService("HttpService")
+local translations = HttpService:JSONDecode(EMBEDDED_JSON).translations
+local hooked = setmetatable({}, { __mode = "k" })
+
+local function hook(obj)
+    if hooked[obj] then return end
+    local property
+    if obj:IsA("TextLabel") or obj:IsA("TextButton") then
+        property = "Text"
+    elseif obj:IsA("TextBox") then
+        -- 保留用户输入，只翻译输入框占位提示。
+        property = "PlaceholderText"
+    else
+        return
+    end
+    hooked[obj] = true
+    local applying = false
+    local function apply()
+        if applying then return end
+        local text = obj[property]
+        local translated = translations[text]
+        if type(translated) == "string" and translated ~= "" and translated ~= text then
+            applying = true
+            obj[property] = translated
+            applying = false
+        end
+    end
+    apply()
+    obj:GetPropertyChangedSignal(property):Connect(apply)
+end
+
+local playerGui = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+local roots = { playerGui }
+local ok, coreGui = pcall(function() return game:GetService("CoreGui") end)
+if ok then roots[#roots + 1] = coreGui end
+if type(gethui) == "function" then
+    local success, hidden = pcall(gethui)
+    if success and hidden then roots[#roots + 1] = hidden end
+end
+local seen = {}
+for _, root in ipairs(roots) do
+    if not seen[root] then
+        seen[root] = true
+        pcall(function()
+            root.DescendantAdded:Connect(function(obj) task.defer(hook, obj) end)
+        end)
+    end
+end
+
+local drawingTexts = setmetatable({}, { __mode = "k" })
+if type(Drawing) == "table" and type(Drawing.new) == "function" then
+    local library = Drawing
+    local original = library.new
+    local function wrapped(kind, ...)
+        local obj = original(kind, ...)
+        if kind == "Text" then drawingTexts[obj] = true end
+        return obj
+    end
+    local installed = pcall(function() library.new = wrapped end) and library.new == wrapped
+    if not installed then
+        local proxy = setmetatable({ new = wrapped }, { __index = library })
+        pcall(function() Drawing = proxy end)
+    end
+end
+
+task.spawn(function()
+    while true do
+        for obj in pairs(drawingTexts) do
+            local success, text = pcall(function() return obj.Text end)
+            if not success and type(getrenderproperty) == "function" then
+                success, text = pcall(getrenderproperty, obj, "Text")
+            end
+            local translated = success and translations[text]
+            if type(translated) == "string" and translated ~= "" and translated ~= text then
+                local applied = pcall(function() obj.Text = translated end)
+                if not applied and type(setrenderproperty) == "function" then
+                    pcall(setrenderproperty, obj, "Text", translated)
+                end
+            end
+        end
+        task.wait(0.1)
+    end
+end)
+
+local function fetch(url)
+    assert(type(url) == "string" and url:match("^https://"), "请配置 HTTPS 脚本地址")
+    local success, source = pcall(function() return game:HttpGet(url) end)
+    if success and type(source) == "string" and #source > 0 then return source end
+    local requestFn = request or http_request or (syn and syn.request)
+    if type(requestFn) == "function" then
+        local fetched, response = pcall(requestFn, { Url = url, Method = "GET" })
+        if fetched and type(response) == "table" then
+            local code = tonumber(response.StatusCode or response.Status)
+            if code and code >= 200 and code < 300 and type(response.Body) == "string" and #response.Body > 0 then
+                return response.Body
+            end
+        end
+    end
+    error("下载失败，请检查 URL、网络与执行器的 HTTP 支持")
+end
+
+local success, err = pcall(function()
+    local source = fetch(SCRIPT_URL)
+    assert(type(loadstring) == "function", "执行器缺少 loadstring")
+    local fn, compileError = loadstring(source)
+    assert(fn, compileError)
+    fn()
+end)
+if not success then warn("[界面汉化] " .. tostring(err)) end

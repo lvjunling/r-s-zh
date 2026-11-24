@@ -113,13 +113,13 @@ if hubGui then hubGui:Destroy() end
 
 ```lua
 getgenv().HUB_KEY = "YOUR_TEST_KEY"
-loadstring(game:HttpGet("https://github.com/evennext333-ai/zp-hub/releases/latest/download/loader.lua"))()
+loadstring(game:HttpGet("https://github.com/evennext333-ai/zs-hub/releases/latest/download/loader.lua"))()
 ```
 
 仅测试 Hub 界面的打开、关闭、销毁和恢复时，无需 Key，使用相同 GitHub 地址：
 
 ```lua
-loadstring(game:HttpGet("https://github.com/evennext333-ai/zp-hub/releases/latest/download/loader.lua"))()
+loadstring(game:HttpGet("https://github.com/evennext333-ai/zs-hub/releases/latest/download/loader.lua"))()
 ```
 
 界面关闭或销毁后，重新执行同一入口恢复。暴力区继续保持未启用，不发放本轮测试 Key。旧后端加载路由仅保留兼容，不再作为国内入口推荐，也不自动回退；业务 API 仍为 `https://www.zldelf.cloud/api`。
