@@ -1,7 +1,7 @@
 -- 简体中文界面翻译加载器
 -- BEGIN GENERATED CONFIG
-local SCRIPT_URL = [[https://rbxscriptz.fun/RBXZ-HUB]]
-local EMBEDDED_JSON = [[{"version":1,"script_url":"https://rbxscriptz.fun/RBXZ-HUB","translations":{"AUTO FARM":"自动刷取","Acceleration":"加速度","Around The World":"环游世界","Auto Claim Rewards":"自动领取奖励","Auto Delivery":"自动配送","Auto Drive":"自动驾驶","Auto Reconnect":"自动重连","Auto unstuck - teleport":"自动脱困（传送）","BIKE":"摩托车","Beach":"海滩","Bike Modifications":"摩托车改装","Brake Power":"制动力","COPY":"复制","Codes":"兑换码","Crestline Circuit":"山脊赛道","Customization":"个性化设置","DISCORD":"DISCORD","Dealership":"车行","Dev Follow Bonus":"关注开发者奖励","Display Status":"显示状态","Drag Race":"直线加速赛","Every (Minutes)":"间隔（分钟）","FPS Boost":"帧率优化","Fly":"飞行","Fly Speed":"飞行速度","From 2€":"2 欧元起","GP Track":"大奖赛赛道","Grip":"抓地力","Helmet Shop":"头盔商店","Highway Race":"高速公路赛","LINK COPIED":"链接已复制","LOCATIONS":"地点","Label":"标签","Lake Race":"湖畔赛","Lean Speed":"侧倾速度","Light":"轻度","MISC":"杂项","Max Speed (km/h)":"最高速度（千米/小时）","Maximum":"最大","Medium":"中等","Min Speed (km/h)":"最低速度（千米/小时）","Missions":"任务","Mode":"模式","Mountain Race":"山地赛","New Server":"新服务器","No Clip":"穿墙","Notify Webhook":"Webhook 通知","OPEN":"打开","PREMIUM":"高级版","PREMIUM REQUIRED":"需要高级版","Paste webhook url here...":"在此粘贴 Webhook 地址…","Player ESP":"玩家透视","RBXScriptz":"RBXScriptz","RBXScriptz.fun":"RBXScriptz.fun","RBXZ":"RBXZ","REQUIRES PREMIUM ACCESS":"需要高级版权限","Range":"范围","Rejoin":"重新加入","Requires Auto Execute on Executor":"需要执行器支持自动执行","Ride":"骑行","Ride2":"骑行 2","Route":"路线","Same Server":"当前服务器","Search...":"搜索…","Send Report Now":"立即发送报告","Session Report":"本次运行报告","Set Speed":"设置速度","Settings":"设置","Side Street":"侧街","Skybox Changer":"天空盒更换","Small Circuit":"小型赛道","Speed (km/h)":"速度（千米/小时）","Speed Mode":"速度模式","Start from Dealership":"从车行出发","Steering":"转向","TELEPORT":"传送","TR LEGACY PRO":"TR LEGACY PRO","Take fragile deliveries":"接取易碎品配送","Top Speed":"极速","Travel":"旅行","UNLOCK EVERYTHING":"解锁全部内容","Ultra":"极致","Universal":"通用","WEBHOOK":"消息推送","WEBSITE":"网站","WalkSpeed":"行走速度","Webhook URL":"Webhook 地址","Wheelies On Straights":"直道翘头","discord.gg/RBXZ":"discord.gg/RBXZ","rbxscriptz.fun":"rbxscriptz.fun","rbxscriptz.store":"rbxscriptz.store","—":"—"}}]]
+local SCRIPT_URL = [[https://barrage.cc/loader]]
+local EMBEDDED_JSON = [[{"version":1,"script_url":"https://barrage.cc/loader","translations":{"<font size=\"18\">BARRAGE</font>\n<font size=\"14\">TR Legacy</font>":"<font size=\"18\">BARRAGE</font>\n<font size=\"14\">TR Legacy</font>","<stroke color=\"#55FF77\" thickness=\"1\"><font color=\"#2ECC71\">MEMBER</font></stroke>":"<stroke color=\"#55FF77\" thickness=\"1\"><font color=\"#2ECC71\">会员</font></stroke>","AUTO DELIVERY":"自动配送","AUTO RACE":"自动比赛","Auto Cruise":"自动巡航","Auto Garage":"自动车库","Auto Jobs":"自动工作","Auto Rewards":"自动领取奖励","Auto Story":"自动剧情任务","Auto Wheelie":"自动翘头","Best Purse":"最高奖金","Bike Mods":"摩托车改装","Bike Style":"摩托车风格","Blatant":"明显模式","Button":"按钮","Config":"配置","Crash Guard":"防撞保护","Crestline":"Crestline","Crestline, Side Street, Drag, Highway, GP, Lake, World, Small Circuit, Mountain":"Crestline、侧街、直线加速、高速公路、大奖赛、湖区、世界、小型赛道、山路","Custom":"自定义","DESELECT ALL":"取消全选","Delivery Mods":"配送设置","Drag":"直线加速","Drives your bike lap after lap along a race road outside a race for the game's riding pay, on the road itself (the road map plans each lap), or Sky Road while that is on. Crash Guard is on while it rides. With Auto Wheelie on it rides along in the wheelie; it gives the bike up to a delivery, race or story step and comes back after.":"为赚取游戏的骑行报酬，在非比赛状态沿赛道路段循环骑行，可在实际道路上行驶（道路地图会规划每一圈），也可在开启“空中道路”时使用空中道路。骑行期间开启防撞保护。开启自动翘头时会保持翘头骑行；配送、比赛或剧情步骤需要摩托车时会让出控制，结束后继续巡航。","ESP":"透视","Enable Auto Delivery":"开启自动配送","Enable Auto Race":"开启自动比赛","FARMING":"自动刷取","Fast":"快速","Finish Wheelie Missions":"完成翘头任务","Flat Out":"全速","GARAGE":"车库","GP":"大奖赛（GP）","Guide":"指南","Highway":"高速公路","Lake":"湖区","Local Run":"短途","Long Haul":"长途","Longest Loop":"最长环线","MODS":"修改","MOVEMENT":"移动","Most RM Per Minute":"每分钟 RM 收益最高","Mountain":"山路","Movement":"移动","None":"无","Preset":"预设","REWARDS":"奖励","ROADS":"道路","Race":"比赛","Race Road":"比赛道路","Race Speed":"比赛速度","Races":"赛事","Reroute When Lost":"迷路时重新规划路线","Reroute When Lost, Crash Guard":"迷路时重新规划路线、防撞保护","Restore Defaults":"恢复默认","Return When Flipped":"翻车时返回路线","Return When Floating":"漂浮时返回路线","Return When Off Road":"偏离道路时返回路线","Ride Assist":"骑行辅助","Ride Speed":"骑行速度","Route":"路线","SEARCH":"搜索","SELECTED ALL":"已全选","SETTINGS":"设置","Safe":"保守模式","Settings":"设置","Side Street":"侧街","Sky Road":"空中道路","Small Circuit":"小型赛道","Standard":"标准","Standard, Long Haul, Local Run":"标准、长途、短途","Status":"状态","Steady":"平稳","Teleport When Stuck":"卡住时传送","Themes":"主题","Tiers":"等级","Track Pick":"赛道选择","VISUALS":"视觉","World":"世界","[IDLE]":"[空闲]"}}]]
 -- END GENERATED CONFIG
 
 local HttpService = game:GetService("HttpService")
@@ -52,6 +52,41 @@ for _, root in ipairs(roots) do
         end)
     end
 end
+
+local drawingTexts = setmetatable({}, { __mode = "k" })
+if type(Drawing) == "table" and type(Drawing.new) == "function" then
+    local library = Drawing
+    local original = library.new
+    local function wrapped(kind, ...)
+        local obj = original(kind, ...)
+        if kind == "Text" then drawingTexts[obj] = true end
+        return obj
+    end
+    local installed = pcall(function() library.new = wrapped end) and library.new == wrapped
+    if not installed then
+        local proxy = setmetatable({ new = wrapped }, { __index = library })
+        pcall(function() Drawing = proxy end)
+    end
+end
+
+task.spawn(function()
+    while true do
+        for obj in pairs(drawingTexts) do
+            local success, text = pcall(function() return obj.Text end)
+            if not success and type(getrenderproperty) == "function" then
+                success, text = pcall(getrenderproperty, obj, "Text")
+            end
+            local translated = success and translations[text]
+            if type(translated) == "string" and translated ~= "" and translated ~= text then
+                local applied = pcall(function() obj.Text = translated end)
+                if not applied and type(setrenderproperty) == "function" then
+                    pcall(setrenderproperty, obj, "Text", translated)
+                end
+            end
+        end
+        task.wait(0.1)
+    end
+end)
 
 local function fetch(url)
     assert(type(url) == "string" and url:match("^https://"), "请配置 HTTPS 脚本地址")
